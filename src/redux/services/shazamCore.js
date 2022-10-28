@@ -14,6 +14,7 @@ const options = {
     .catch(err => console.error(err));
 
 
+
 export const shazamCoreApi = createApi({
     reducerPath:'shazamCoreApi',
     baseQuery: fetchBaseQuery({
@@ -25,7 +26,7 @@ export const shazamCoreApi = createApi({
     }),
     endpoints: (builder) => ({
         getTopCharts: builder.query({query: () => '/charts/world'}),
-        getSongByGenre: builder.query({query: (genre) => `/charts/genre-world?genre_code=${genre}`}),
+        // getSongByGenre: builder.query({query: (genre) => `/charts/genre-world?genre_code=${genre}`}),
         getSongDetails: builder.query({query: ({songid}) => `/tracks/details?track_id=${songid}`}),
         getSongRelated: builder.query({query: ({songid}) => `/tracks/related?track_id=${songid}`}),
         getArtistDetails: builder.query({query: (artistId) => `/artists/details?artist_id=${artistId}`}),
@@ -34,12 +35,38 @@ export const shazamCoreApi = createApi({
     }),
 })
 
+export const testShazamCoreApi = createApi({
+    reducerPath:'testShazamCoreApi',
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'https://85d08bbe-a965-43e9-84bb-0aa6a138599d.mock.pstmn.io',
+    }),
+    endpoints: (builder) => ({
+        // getTopCharts: builder.query({query: () => '/charts/world'}),
+        getSongByGenre: builder.query({query: (genre) => `/charts/genre-world?genre_code=${genre}`}),
+        // getSongDetails: builder.query({query: ({songid}) => `/tracks/details?track_id=${songid}`}),
+        // getSongRelated: builder.query({query: ({songid}) => `/tracks/related?track_id=${songid}`}),
+        // getArtistDetails: builder.query({query: (artistId) => `/artists/details?artist_id=${artistId}`}),
+        // getSongByCountry: builder.query({query: (countryCode) => `/charts/country?country_code=${countryCode}`}),
+        // getSongsBySearch: builder.query({query: (searchTerm) => `/search/multi?search_type=SONGS_ARTISTS&query=${searchTerm}`}),
+    }),
+})
+
 export const {
     useGetTopChartsQuery,
-    useGetSongByGenreQuery,
+    // useGetSongByGenreQuery,
     useGetSongDetailsQuery,
     useGetSongRelatedQuery,
     useGetArtistDetailsQuery,
     useGetSongByCountryQuery,
     useGetSongsBySearchQuery,
 } = shazamCoreApi;
+
+export const {
+    // useGetTopChartsQuery,
+    useGetSongByGenreQuery,
+    // useGetSongDetailsQuery,
+    // useGetSongRelatedQuery,
+    // useGetArtistDetailsQuery,
+    // useGetSongByCountryQuery,
+    // useGetSongsBySearchQuery,
+} = testShazamCoreApi;

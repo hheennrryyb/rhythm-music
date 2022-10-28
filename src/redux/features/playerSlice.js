@@ -8,6 +8,7 @@ const initialState = {
   activeSong: {},
   genreListId: '',
 };
+// An object of "case reducers". Key names will be used to generate actions.
 
 const playerSlice = createSlice({
   name: 'player',
@@ -16,35 +17,22 @@ const playerSlice = createSlice({
     setActiveSong: (state, action) => {
       state.activeSong = action.payload.song;
 
-      if (action.payload?.data?.tracks?.hits) {
-        state.currentSongs = action.payload.data.tracks.hits;
-      } else if (action.payload?.data?.properties) {
-        state.currentSongs = action.payload?.data?.tracks;
-      } else {
-        state.currentSongs = action.payload.data;
-      }
+      state.currentSongs = action.payload.data;
 
-      state.currentIndex = action.payload.i;
+      // state.currentIndex = action.payload.i;
       state.isActive = true;
     },
 
     nextSong: (state, action) => {
-      if (state.currentSongs[action.payload]?.track) {
-        state.activeSong = state.currentSongs[action.payload]?.track;
-      } else {
         state.activeSong = state.currentSongs[action.payload];
-      }
+      console.log(state.currentSongs[action.payload])
 
       state.currentIndex = action.payload;
       state.isActive = true;
     },
 
     prevSong: (state, action) => {
-      if (state.currentSongs[action.payload]?.track) {
-        state.activeSong = state.currentSongs[action.payload]?.track;
-      } else {
-        state.activeSong = state.currentSongs[action.payload];
-      }
+      state.activeSong = state.currentSongs[action.payload];
 
       state.currentIndex = action.payload;
       state.isActive = true;
