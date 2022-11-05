@@ -22,4 +22,8 @@ export const links = [
   { name: 'Around You', to: '/around-you', icon: HiOutlinePhotograph },
   { name: 'Top Artists', to: '/top-artists', icon: HiOutlineUserGroup },
   { name: 'Top Charts', to: '/top-charts', icon: HiOutlineHashtag },
+  { name: 'My Playlists', to: '/playlists', icon: HiOutlineHashtag },
+
 ];
+
+export const userId = '636037d34a75f43b75a7e4a1'

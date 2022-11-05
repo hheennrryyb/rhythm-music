@@ -1,11 +1,16 @@
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux';
-
+import { useDispatch, useSelector } from 'react-redux';
+import { userId } from '../assets/constants';
+import axios from 'axios'
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
+import {useGetPlaylistDataQuery} from '../redux/services/rhythmUser'
 
 const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const dispatch = useDispatch()
+  const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery();
+
+  // const {playlistsData, playlistIsFetching, playlistError } = useGetPlaylistDataQuery(userId);
   const handlePauseClick = () => {
     dispatch(playPause(false))
   }
@@ -14,10 +19,11 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
     dispatch(playPause(true))
   }
 
-  const handleSaveEvent = () => {
-    console.log("working" + song.title)
-    console.log(song)
-
+  const handleSaveEvent = (playlist) => {
+    console.log("Song name " + song.title)
+    console.log(playlist)
+    axios.post(`http://localhost:8080/users/${userId}/${playlist._id}`,song)
+    .then((response)=>(console.log(response)))
   }
 
   return (
@@ -47,6 +53,14 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
           </Link>
         </p>
         <p onClick={() => handleSaveEvent()}>Like song</p>
+        <div className="dropdown">
+          <label tabIndex={0} className="btn m-1">🔥</label>
+          <ul tabIndex={0} className="bottom-[50px] dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+            {playlistsData?.savedPlaylists?.map((playlist) => (
+            <li onClick={()=>handleSaveEvent(playlist)}><a>{playlist.playlistName}</a></li>
+          ))}
+          </ul>
+        </div>
       </div>
     </div>
     // </div>
