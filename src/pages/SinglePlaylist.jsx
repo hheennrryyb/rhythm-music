@@ -2,7 +2,7 @@ import React from 'react'
 import {Link, useParams} from 'react-router-dom'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { SongCard } from '../components';
+import { PlaylistSongCard } from '../components';
 import {useGetPlaylistSongsDataQuery} from '../redux/services/rhythmUser'
 import { useDispatch, useSelector } from 'react-redux'
 import {userId} from '../assets/constants'
@@ -33,7 +33,7 @@ function SinglePlaylist() {
   return (
     <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
         {playlistData?.songsData.map((song, i) => (
-                        <SongCard
+                        <PlaylistSongCard
                             key={song.key}
                             song={song}
                             isPlaying={isPlaying}

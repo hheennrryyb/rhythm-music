@@ -50,6 +50,30 @@ export const rhythmUserApi = createApi({
                 // body: playlistData
             }),
             invalidatesTags: ['Playlist'],
+        }),
+        addNewSongPlaylist : builder.mutation({
+            query:({userId, playlistId, song}) => ({
+                url: `/${userId}/${playlistId}`,
+                method: 'POST',
+                body: song
+            }),
+            invalidatesTags: ['Playlist'],
+        }),
+        addNewSongPlaylist : builder.mutation({
+            query:({userId, playlistId, song}) => ({
+                url: `/${userId}/${playlistId}`,
+                method: 'POST',
+                body: song
+            }),
+            invalidatesTags: ['Playlist'],
+        }),
+        deleteSongPlaylist : builder.mutation({
+            query:({userId, playlistId, songId}) => ({
+                url: `/${userId}/${playlistId}/${songId}`,
+                method: 'DELETE',
+                // body: song
+            }),
+            invalidatesTags: ['Playlist'],
         })
     }),
 })
@@ -59,4 +83,6 @@ export const {
     useGetPlaylistSongsDataQuery,
     useAddNewPlaylistMutation,
     useDeletePlaylistMutation,
+    useAddNewSongPlaylistMutation,
+    useDeleteSongPlaylistMutation,
 } = rhythmUserApi;

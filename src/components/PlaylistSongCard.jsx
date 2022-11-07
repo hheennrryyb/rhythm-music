@@ -1,19 +1,17 @@
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { userId } from '../assets/constants';
 import axios from 'axios'
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
-import {useGetPlaylistDataQuery, useAddNewSongPlaylistMutation} from '../redux/services/rhythmUser'
-import {BsThreeDotsVertical} from 'react-icons/bs'
-
+import {useGetPlaylistDataQuery, useDeleteSongPlaylistMutation} from '../redux/services/rhythmUser'
 import toast, { Toaster } from 'react-hot-toast';
 
-
-const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
+const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const dispatch = useDispatch()
+  const {playlistId} = useParams()
   const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId);
-  const [AddNewSongPlaylist] = useAddNewSongPlaylistMutation()
+  const [DeleteSongPlaylist] = useDeleteSongPlaylistMutation()
   console.log(playlistsData)
 
   // const {playlistsData, playlistIsFetching, playlistError } = useGetPlaylistDataQuery(userId);
@@ -25,15 +23,16 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
     dispatch(playPause(true))
   }
 
-  const handleSaveEvent = (playlist) => {
-    console.log("Song name " + song.title)
-    console.log(playlist)
-    const playlistId = playlist._id
+  const handleDeleteEvent = (playlist) => {
+    console.log(song.title + song.key)
+    // console.log(playlist._id)
+    console.log(playlistId)
+    const songId = song.key
+    // console.log(userId + playlistId + songId)
     // axios.post(`http://localhost:8080/users/${userId}/${playlist._id}`,song)
     // .then((response)=>(console.log(response)))
-    AddNewSongPlaylist({userId, playlistId, song})
-    toast.success(`Successfully Added ${song.title} to ${playlist.playlistName}`);
-
+    DeleteSongPlaylist({userId, playlistId, songId})
+    toast.success(`Successfully Deleted ${song.title}`);
   }
 
   return (
@@ -51,32 +50,23 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
         </div>
         <img alt="song_img" src={song.images?.coverart} />
       </div>
-      <div className='mt-4 flex flex-row justify-between'>
-        <div>
-        <p className='font-semibold text-lg text-white truncate w-[10rem]'>
-          <Link to={`/song/${song?.key}`}>
+      <div className='mt-4 flex flex-col'>
+        <p className='font-semibold text-lg text-white truncate'>
+          <Link to={`/songs/${song?.key}`}>
             {song.title}
           </Link>
         </p>
-        <p className='text-sm truncate text-gray-300 mt-1 w-[10rem]'>
+        <p className='text-sm truncate text-gray-300 mt-1'>
           <Link to={song.artists ? `/artists/${song?.artists[0]?.adamid}` : '/top-artists'}>
             {song.subtitle}
           </Link>
         </p>
-        </div>
         {/* <p onClick={() => handleSaveEvent()}>Like song</p> */}
-        <div className="dropdown dropdown-top dropdown-end">
-          <button tabIndex={0} className="btn"><BsThreeDotsVertical/></button>
-          <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[13.6rem]">
-            {playlistsData?.savedPlaylists?.map((playlist) => (
-            <li onClick={()=>handleSaveEvent(playlist)}><a>{playlist.playlistName}</a></li>
-          ))}
-          </ul>
-        </div>
+          <div onClick={()=> handleDeleteEvent()} className="btn m-1">❌</div>
       </div>
     </div>
     // </div>
   )
 };
 
-export default SongCard;
+export default PlaylistSongCard;

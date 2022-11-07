@@ -41,7 +41,7 @@ return (
     {/* <GenreList genreListId={'ELECTRONIC'}/> */}
     {/* <GenreList genreListId={'POP'}/> */}
 
-    <div className='w-full flex justify-between items-center sm:flex-row flex-col mt-4 mb-10'>
+    <div className='w-full flex justify-between items-center sm:flex-row flex-col mt-5 mb-5 px-28'>
         <h2 className='font-bold text-3xl text-white text-left'>Discover {genreTitle}</h2>
         <select
         onChange={(e)=> dispatch(selectGenreListId(e.target.value))}
@@ -52,7 +52,7 @@ return (
         </select>
     </div>
 
-    <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
+    <div className='flex flex-wrap justify-center gap-8'>
         {data?.map ((song, i) =>(
             <SongCard
             key={song.key}

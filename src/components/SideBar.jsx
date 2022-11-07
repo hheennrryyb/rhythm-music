@@ -6,18 +6,18 @@ import axios from 'axios'
 
 import { useDispatch, useSelector } from 'react-redux'
 import {useAddNewPlaylistMutation} from '../redux/services/rhythmUser'
-
+import toast, { Toaster } from 'react-hot-toast';
 // import {logo} from '../assets'
 import {links ,userId} from '../assets/constants'
 
 const NavLinks = ({handleClick}) =>(
-  <div className='mt-10'>
+  <div className='flex flex-wrap my-auto'>
     {links.map((item)=>(
       <NavLink 
       onClick={() => handleClick && handleClick()}
       key={item.name}
       to={item.to}
-      className='flex flex-row justify-start items-center my-8 text-sm font-medium text-gray-400 hover:text-cyan-400'>
+      className='flex flex-col justify-start items-center mx-8 text-sm font-medium text-gray-400 hover:text-cyan-400'>
         <item.icon className='w-6 h-6 mr-2'/>
         {item.name}
       </NavLink>
@@ -38,6 +38,7 @@ const SideBar = () => {
     }
     addPlaylist(playlistData)
     event.target.playlistName.value = ''
+    toast.success(`Successfully Created Playlist ${playlistData.playlistName}`);
     // axios.post(`http://localhost:8080/users/${userId}/playlist`, playlistData)
     // .then((response)=>{
     //   dispatch(setPlaylistsData(response.data))
@@ -48,10 +49,10 @@ const SideBar = () => {
 
   return(
     <>
-    <div className='md:flex hidden flex-col w-[240px] py-10 px-4 bg-[#191624]'>
+    <div className='absolute h-[4rem] bottom-0 left-0 right-0 flex justify-center bg-gradient-to-br from-gray-800 to-[#2a2a80] backdrop-blur-lg z-10'>
     {/* <img src={logo} alt='logo' className='w-full h-14 object-contain' /> */}
     <NavLinks/>
-    <div className='form-control'>
+    <div className='form-control my-auto'>
     <form onSubmit={handleNewPlaylist} className='input-group'>
     <input className='input input-bordered w-[10rem]' placeholder='Playlist Name' name='playlistName' />
     <button className='btn btn-square '>ADD</button>

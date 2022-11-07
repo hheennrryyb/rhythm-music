@@ -25,10 +25,3 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(rhythmUserApi.middleware),
 });
 
-// store.subscribe(()=> 
-// axios.get(`http://localhost:8080/users/${testUser}`)
-// .then((response)=>{
-//   const dispatch = useDispatch()
-//   dispatch(setPlaylistsData(response.data.savedPlaylists))
-// })
-// .catch((err) => console.log(err)))

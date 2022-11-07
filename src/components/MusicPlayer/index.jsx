@@ -52,10 +52,11 @@ const MusicPlayer = () => {
   };
 
   return (
-        <div className="absolute h-28 bottom-0 left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
-          <div className="relative sm:px-12 px-8 w-full flex items-center justify-between">
+        <div className="absolute h-28 bottom-[3.5rem] left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
+          <div className="relative px-[5rem] w-full flex items-center justify-center ">
             <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
-            <div className="flex-1 flex flex-col items-center justify-center">
+            
+            <div className="flex flex-col mx-[5rem]">
               <Controls
                 isPlaying={isPlaying}
                 isActive={isActive}
@@ -68,14 +69,8 @@ const MusicPlayer = () => {
                 handlePrevSong={handlePrevSong}
                 handleNextSong={handleNextSong}
               />
-              <Seekbar
-                value={appTime}
-                min="0"
-                max={duration}
-                onInput={(event) => setSeekTime(event.target.value)}
-                setSeekTime={setSeekTime}
-                appTime={appTime}
-              />
+             </div>
+            <div className="flex flex-col">
               <Player
                 activeSong={activeSong}
                 isPlaying={isPlaying}
@@ -85,6 +80,16 @@ const MusicPlayer = () => {
                 onEnded={handleNextSong}
                 onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
                 onLoadedData={(event) => setDuration(event.target.duration)}
+              />
+            </div>
+            <div>
+            <Seekbar
+                value={appTime}
+                min="0"
+                max={duration}
+                onInput={(event) => setSeekTime(event.target.value)}
+                setSeekTime={setSeekTime}
+                appTime={appTime}
               />
             </div>
           </div>

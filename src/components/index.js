@@ -4,11 +4,13 @@ import MusicPlayer from './MusicPlayer/index';
 import GenreList from "./GenreList";
 import SideBar from './SideBar'
 import PlaylistCard from "./PlaylistCard";
+import PlaylistSongCard from './PlaylistSongCard'
 export {
     SongCard,
     PlayPause,
     MusicPlayer,
     GenreList,
     SideBar,
-    PlaylistCard
+    PlaylistCard,
+    PlaylistSongCard,
 }

@@ -7,6 +7,7 @@ import playlistCover from '../assets/playlist_cover.png'
 import { useDispatch, useSelector } from 'react-redux'
 // import {setPlaylistsData} from '../redux/features/playlistSlice'
 import {useDeletePlaylistMutation} from '../redux/services/rhythmUser'
+import toast, { Toaster } from 'react-hot-toast';
 
 const PlaylistCard = ({ playlistName, description, songsData, playlistId }) => {
   const dispatch = useDispatch()
@@ -16,13 +17,14 @@ const PlaylistCard = ({ playlistName, description, songsData, playlistId }) => {
     // axios.delete(`http://localhost:8080/users/${userId}/${id}`)
     // .then((response)=>dispatch(setPlaylistsData(response.data)))
     deletePlaylist({userId, playlistId})
+    toast.success(`Successfully Deleted ${playlistName}`);
   } 
 
   return (
     // <div className='block'>
     <div className='flex flex-col w-[250px] p-4 bg-gray-600 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
       <div className='relative w-full h-56 group'>
-        <img alt="song_img" src={songsData[0]?.images.coverart || playlistCover} />
+        <img alt="song_img" src={songsData[0]?.images?.coverart || playlistCover} />
       </div>
       <div className='mt-4 flex flex-col'>
         <p className='font-semibold text-lg text-white truncate'>
