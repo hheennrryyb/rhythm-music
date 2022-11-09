@@ -16,7 +16,8 @@ const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGe
 
 console.log(playlistsData)
   return (
-    <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
+    <div className=''>
+    <div className='flex flex-wrap justify-center gap-8 '>
     {playlistsData?.savedPlaylists.map((playlistCard)=>(
       <PlaylistCard
       playlistId={playlistCard._id}
@@ -26,6 +27,7 @@ console.log(playlistsData)
       />
     ))}
 
+    </div>
     </div>
   )
 }

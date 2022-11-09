@@ -41,11 +41,11 @@ export const testShazamCoreApi = createApi({
         baseUrl: 'https://85d08bbe-a965-43e9-84bb-0aa6a138599d.mock.pstmn.io',
     }),
     endpoints: (builder) => ({
-        // getTopCharts: builder.query({query: () => '/charts/world'}),
+        getTopCharts: builder.query({query: () => '/charts/world'}),
         getSongByGenre: builder.query({query: (genre) => `/charts/genre-world?genre_code=${genre}`}),
-        getSongDetails: builder.query({query: (songid) => `/tracks/details?track_id=${songid}`}),
+        getSongDetails: builder.query({query: (songId) => `/tracks/details?track_id=${songId}`}),
         // getSongRelated: builder.query({query: ({songid}) => `/tracks/related?track_id=${songid}`}),
-        // getArtistDetails: builder.query({query: (artistId) => `/artists/details?artist_id=${artistId}`}),
+        getArtistDetails: builder.query({query: (artistId) => `/artists/details?artist_id=${artistId}`}),
         // getSongByCountry: builder.query({query: (countryCode) => `/charts/country?country_code=${countryCode}`}),
         // getSongsBySearch: builder.query({query: (searchTerm) => `/search/multi?search_type=SONGS_ARTISTS&query=${searchTerm}`}),
     }),
@@ -62,11 +62,11 @@ export const {
 } = shazamCoreApi;
 
 export const {
-    // useGetTopChartsQuery,
+    useGetTopChartsQuery,
     useGetSongByGenreQuery,
     useGetSongDetailsQuery,
     // useGetSongRelatedQuery,
-    // useGetArtistDetailsQuery,
+    useGetArtistDetailsQuery,
     // useGetSongByCountryQuery,
     // useGetSongsBySearchQuery,
 } = testShazamCoreApi;
