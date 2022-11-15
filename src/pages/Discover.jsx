@@ -6,12 +6,12 @@ import { selectGenreListId } from '../redux/features/playerSlice'
 import {useGetSongByGenreQuery} from '../redux/services/shazamCore'
 import {useGetPlaylistDataQuery} from '../redux/services/rhythmUser'
 
-import {setPlaylistsData} from '../redux/features/playlistSlice'
 import axios from 'axios';
-import { userId } from '../assets/constants'
 import { useState, useEffect } from 'react';
 
 const Discover = () => {
+    const {userData} = useSelector((state) => state.user)
+    const userId = userData?._id
     const dispatch = useDispatch()
     const {activeSong, isPlaying, genreListId} = useSelector((state) => state.player) 
 const {data, isFetching, error } = useGetSongByGenreQuery(genreListId || "POP");

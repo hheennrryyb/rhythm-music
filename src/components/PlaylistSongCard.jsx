@@ -1,6 +1,6 @@
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { userId } from '../assets/constants';
+
 import axios from 'axios'
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
@@ -8,6 +8,8 @@ import {useGetPlaylistDataQuery, useDeleteSongPlaylistMutation} from '../redux/s
 import toast, { Toaster } from 'react-hot-toast';
 
 const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
+  const {userData} = useSelector((state) => state.user)
+  const userId = userData?._id
   const dispatch = useDispatch()
   const {playlistId} = useParams()
   const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId);

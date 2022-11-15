@@ -26,4 +26,3 @@ export const links = [
 
 ];
 
-export const userId = '636037d34a75f43b75a7e4a1'

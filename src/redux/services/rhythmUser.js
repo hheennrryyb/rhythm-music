@@ -1,6 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-
 // const options = {
 //     method: 'GET',
 //     headers: {
@@ -36,8 +35,8 @@ export const rhythmUserApi = createApi({
             providesTags: ['Playlist']
         }),
         addNewPlaylist: builder.mutation({
-            query:(playlistData) => ({
-                url: `/636037d34a75f43b75a7e4a1/playlist`,
+            query:({playlistData, userId}) => ({
+                url: `/${userId}/playlist`,
                 method: 'POST',
                 body: playlistData
             }),

@@ -5,10 +5,12 @@ import { useState, useEffect } from 'react';
 import { PlaylistSongCard } from '../components';
 import {useGetPlaylistSongsDataQuery} from '../redux/services/rhythmUser'
 import { useDispatch, useSelector } from 'react-redux'
-import {userId} from '../assets/constants'
+
 // import { useGetSongByGenreQuery } from '../redux/services/shazamCore'
 
 function SinglePlaylist() {
+  const {userData} = useSelector((state) => state.user)
+  const userId = userData?._id
     const {playlistId} = useParams()
     // const [playlistData, setPlaylistData] = useState()
     // const [getPlaylistSongsData] = useGetPlaylistSongsDataQuery()
@@ -17,17 +19,7 @@ function SinglePlaylist() {
     const {data: playlistData, isFetching: isFetchingPlaylistData, error } = useGetPlaylistSongsDataQuery({userId,playlistId});
     // const { data, isFetching, error } = useGetSongByGenreQuery(genreListId);
     console.log(playlistData)
-    // const getUserData = (userId, playlistId) =>{
-    // axios.get(`http://localhost:8080/users/${userId}/${playlistId}`)
-    // .then((response)=>{
-    //     setPlaylistData(response.data.songsData)
-    // })
-    // .catch((err) => console.log(err))
-    // }
 
-    // useEffect(() => {
-    // getUserData('636037d34a75f43b75a7e4a1',playlistId)
-    // }, []);
     
     
   return (

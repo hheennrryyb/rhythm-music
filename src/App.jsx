@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { Searchbar, SideBar, MusicPlayer} from './components';
-import { Discover, Playlists, SinglePlaylist, Song, Artist, Charts } from './pages';
+import { Discover, Playlists, SinglePlaylist, Song, Artist, Charts, Login } from './pages';
+
+import authService from './services/auth.service';
+import {useDispatch} from 'react-redux'
+import {setUserData} from './redux/features/userSlice'
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
+  const { isUserLogin } = useSelector((state) => state.user);
+  const dispatch = useDispatch()
+  console.log(isUserLogin)
 
+
+  useEffect(() => {
+    console.log('useEffect')
+    const user = authService.getCurrentUser();
+    if(user){
+      dispatch(setUserData(user))
+    console.log('useEffect dispatch user')
+    }
+  }, [isUserLogin]);
 
 
   return (
@@ -25,6 +41,7 @@ const App = () => {
               <Route path="/song/:songId" element={<Song />} />
               <Route path="/artist/:artistId" element={<Artist />} />
               <Route path="/top-charts" element={<Charts />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </div>
           {/* <div className="xl:sticky relative top-0 h-fit">

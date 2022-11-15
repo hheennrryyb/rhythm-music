@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import PlayPause from './PlayPause';
-import { userId } from '../assets/constants';
+
 import axios from 'axios'
 import playlistCover from '../assets/playlist_cover.png'
 
@@ -10,6 +10,8 @@ import {useDeletePlaylistMutation} from '../redux/services/rhythmUser'
 import toast, { Toaster } from 'react-hot-toast';
 
 const PlaylistCard = ({ playlistName, description, songsData, playlistId }) => {
+  const {userData} = useSelector((state) => state.user)
+  const userId = userData?._id
   const dispatch = useDispatch()
   const [deletePlaylist] = useDeletePlaylistMutation()
   const handlePlaylistDelete = (event) =>{

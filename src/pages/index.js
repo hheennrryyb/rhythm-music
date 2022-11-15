@@ -4,6 +4,7 @@ import SinglePlaylist from "./SinglePlaylist";
 import Song from './Song'
 import Artist from "./Artist";
 import Charts from './Charts'
+import Login from "./Login";
 
 export{
     Discover,
@@ -11,5 +12,6 @@ export{
     SinglePlaylist,
     Song,
     Artist,
-    Charts
+    Charts,
+    Login
 }
