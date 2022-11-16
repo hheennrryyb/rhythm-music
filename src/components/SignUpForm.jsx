@@ -66,20 +66,20 @@ function SignUpForm() {
         }
     };
     return (
-        <div className='flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
+        <div className='flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
             <div className="w-full max-w-md space-y-8">
-                <form onSubmit={handleSubmit} className='mt-8 space-y-6'>
-                    <h2>Sign Up for Rhythm</h2>
-                    <div className="-space-y-px rounded-md shadow-sm">
+                <form onSubmit={handleSubmit} className='space-y-6'>
+                    <h2 className='text-xl font-bold text-white'>Create A Rhythm Account</h2>
+                    <div className="rounded-md shadow-sm">
                         <label>
-                            Username: <input className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            Username: <input className="mb-2 block input input-bordered w-full"
                                 type="text"
                                 name="username"
                                 onChange={e => handleInputChange(e, setUsername)}
                                 value={username} />
                         </label>
                         <label>
-                            Email: <input className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            Email: <input className="mb-2 block input input-bordered w-full"
                                 type="text"
                                 name="email"
                                 onChange={e => handleInputChange(e, setEmail)}
@@ -88,7 +88,7 @@ function SignUpForm() {
 
 
                         <label>
-                            Password: <input className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                            Password: <input className="mb-2 block input input-bordered w-full"
                                 type="password"
                                 name="password"
                                 onChange={e => handleInputChange(e, setPassword)}
@@ -96,7 +96,7 @@ function SignUpForm() {
                         </label>
 
                         <label>
-                            Confirm Password: <input className={`relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm`}
+                            Confirm Password: <input className='mb-2 block input input-bordered w-full'
                                 type="password"
                                 name="confirmPassword"
                                 value={confirmPassword}
@@ -105,7 +105,7 @@ function SignUpForm() {
                             />
                         </label>
                     </div>
-                    <button>Sign Up</button>
+                    <button className='btn btn-block'>Sign Up</button>
                 </form>
             </div>
         </div>

@@ -30,10 +30,7 @@ function Charts() {
 
     const { data, isFetching, error } = useGetTopChartsQuery()
     const { activeSong, isPlaying, genreListId } = useSelector((state) => state.player)
-    // console.log(data[0])
-    console.log(isFetching)
     const artistData = isFetching === !true?([...data].sort(() => 0.5 - Math.random())).slice(0, 20): null
-    // isFetching? ([...data]?.sort(() => 0.5 - Math.random())).slice(0, 20): ''
 
     return (
         <div className='flex flex-col'>

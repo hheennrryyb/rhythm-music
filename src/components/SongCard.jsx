@@ -3,17 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios'
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
-import {useGetPlaylistDataQuery, useAddNewSongPlaylistMutation} from '../redux/services/rhythmUser'
-import {HiOutlinePlus} from 'react-icons/hi'
+import { useGetPlaylistDataQuery, useAddNewSongPlaylistMutation } from '../redux/services/rhythmUser'
+import { HiOutlinePlus } from 'react-icons/hi'
 
 import toast, { Toaster } from 'react-hot-toast';
 
 
 const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
-  const {userData} = useSelector((state) => state.user)
+  const { userData, isUserLogin } = useSelector((state) => state.user)
   const userId = userData?._id
   const dispatch = useDispatch()
-  const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId);
+  const { data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId, { skip: !isUserLogin });
   const [AddNewSongPlaylist] = useAddNewSongPlaylistMutation()
   // console.log(playlistsData)
 
@@ -32,7 +32,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
     const playlistId = playlist?._id
     // axios.post(`http://localhost:8080/users/${userId}/${playlist._id}`,song)
     // .then((response)=>(console.log(response)))
-    AddNewSongPlaylist({userId, playlistId, song})
+    AddNewSongPlaylist({ userId, playlistId, song })
     toast.success(`Successfully Added ${song.title} to ${playlist.playlistName}`);
 
   }
@@ -40,7 +40,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   return (
     // <div className='block'>
     // <div style={{ backgroundImage:`url(${song?.images.coverart})`}} className="object-contain rounded-lg" >
-    <div  className='flex flex-col w-[250px] p-4 bg-gray-600 bg-opacity-70 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
+    <div className='flex flex-col w-[250px] p-4 bg-gray-600 bg-opacity-70 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
       <div className='relative w-full h-56 group'>
         <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeSong?.title === song.title ? 'flex bg-black gb-opacity-70' : 'hidden'}`}>
           <PlayPause
@@ -55,26 +55,28 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
       </div>
       <div className='mt-4 flex flex-row justify-between'>
         <div>
-        <p className='font-semibold text-lg text-white truncate w-[10rem]'>
-          <Link to={`/song/${song?.key}`}>
-            {song.title}
-          </Link>
-        </p>
-        <p className='text-sm truncate text-gray-300 mt-1 w-[10rem]'>
-          <Link to={song.artists ? `/artist/${song?.artists[0]?.adamid}` : '/top-artists'}>
-            {song.subtitle}
-          </Link>
-        </p>
+          <p className='font-semibold text-lg text-white truncate w-[10rem]'>
+            <Link to={`/song/${song?.key}`}>
+              {song.title}
+            </Link>
+          </p>
+          <p className='text-sm truncate text-gray-300 mt-1 w-[10rem]'>
+            <Link to={song.artists ? `/artist/${song?.artists[0]?.adamid}` : '/top-artists'}>
+              {song.subtitle}
+            </Link>
+          </p>
         </div>
         {/* <p onClick={() => handleSaveEvent()}>Like song</p> */}
-        <div className="dropdown dropdown-top dropdown-end">
-          <button tabIndex={0} className="bg-white/10 rounded-lg p-1"><HiOutlinePlus size={25} /></button>
-          <ul tabIndex={0} className="overflow-y-scroll dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[13.6rem] h-[15rem] flex flex-row">
-            {playlistsData?.savedPlaylists?.map((playlist) => (
-            <li className='w-full' onClick={()=>handleSaveEvent(playlist)}><a>{playlist.playlistName}</a></li>
-          ))}
-          </ul>
-        </div>
+        {isUserLogin === true ?
+          <div className="dropdown dropdown-top dropdown-end">
+            <button tabIndex={0} className="bg-white/10 rounded-lg p-1"><HiOutlinePlus size={25} /></button>
+            <ul tabIndex={0} className="overflow-y-scroll dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[13.6rem] h-[15rem] flex flex-row">
+              {playlistsData?.savedPlaylists.length !== 0?playlistsData?.savedPlaylists?.map((playlist) => (
+                <li className='w-full h-fit bg-white/5 rounded-md mb-2' onClick={() => handleSaveEvent(playlist)}><a>{playlist.playlistName}</a></li>
+              )): <p className='text-md p-3'>Make A New Playlist To Start Adding Songs 🎶</p>}
+            </ul>
+          </div>
+          : null}
       </div>
     </div>
     // </div>

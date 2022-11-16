@@ -34,6 +34,10 @@ const handleSignIn = (userSignIn) => {
 const handleRegister = (newUser) => {
     axios.post(`http://localhost:8080/users/auth/register`, newUser)
         .then((response) => {
+            // const newRegisteredUser = response.data
+            // console.log(newRegisteredUser)
+            // return newRegisteredUser
+            console.log(newUser)
             console.log(response.data)
         }).catch((error) => {
             console.error(error)
@@ -56,15 +60,23 @@ const getCurrentUser = () => {
     return userData
 }
 
-const handleGuestUser = () => {
+const handleGuestUser = async () => {
     const random = Math.floor(Math.random() * 1000)
+    // const guestUser = {
+    //     username: `Guest${random}`,
+    //     email: 'Guest@gmail.com',
+    //     password:`guestpass${random.toString()}`,
+    // }
     const guestUser = {
-        username: `Guest${random}`,
+        username: 'testingguest22',
         email: 'Guest@gmail.com',
-        password: { random },
+        password:'testpass',
     }
+    console.log(guestUser)
+    // const guest = await 
     handleRegister(guestUser)
     sessionStorage.setItem('guestUser', true)
+    // handleSignIn(guest)
 }
 
 

@@ -14,7 +14,10 @@ function Playlists() {
 // const dispatch = useDispatch()
 // const {playlistsData} = useSelector((state) => state.playlist)
 // const [playlistsData, setPlaylistsData] = useState()
-const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId);
+const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId,{skip: !isUserLogin});
+
+console.log('is fetching'+isFetchingPlaylistsData)
+console.log('error'+error)
 
 const [addPlaylist] = useAddNewPlaylistMutation()
 const handleNewPlaylist = (event) => {
@@ -30,7 +33,8 @@ const handleNewPlaylist = (event) => {
 }
 
   return (
-    <div className=''>
+    <>
+    {isUserLogin === true? <div className=''>
       <div className='form-control my-auto'>
           <form onSubmit={handleNewPlaylist} className='input-group'>
             <input className='input input-bordered w-[10rem]' placeholder='Playlist Name' name='playlistName' />
@@ -48,7 +52,11 @@ const handleNewPlaylist = (event) => {
     ))}
 
     </div>
-    </div>
+    </div> 
+    : <div>
+      <h2>Please Login Below To Use The Playlist Feature</h2>
+      </div>}
+    </>
   )
 }
 

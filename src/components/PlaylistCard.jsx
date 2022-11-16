@@ -25,8 +25,14 @@ const PlaylistCard = ({ playlistName, description, songsData, playlistId }) => {
   return (
     // <div className='block'>
     <div className='flex flex-col w-[250px] p-4 bg-gray-600 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
-      <div className='relative w-full h-56 group'>
+      <div className='w-full h-56'>
+        {songsData.length <= 1? <img alt="song_img" src={songsData[0]?.images?.coverart || playlistCover} />:
+        <div className='grid grid-cols-2'>
         <img alt="song_img" src={songsData[0]?.images?.coverart || playlistCover} />
+        <img alt="song_img2" src={songsData[1]?.images?.coverart || playlistCover} />
+        <img alt="song_img3" src={songsData[2]?.images?.coverart || playlistCover} />
+        <img alt="song_img4" src={songsData[3]?.images?.coverart || playlistCover} />
+        </div>}
       </div>
       <div className='mt-4 flex flex-col'>
         <p className='font-semibold text-lg text-white truncate'>

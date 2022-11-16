@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 
 import { Searchbar, SideBar, MusicPlayer} from './components';
-import { Discover, Playlists, SinglePlaylist, Song, Artist, Charts, Login } from './pages';
+import { Discover, Playlists, SinglePlaylist, Song, Artist, Charts, Login, SharePlaylist } from './pages';
 
 import authService from './services/auth.service';
 import {useDispatch} from 'react-redux'
-import {setUserData} from './redux/features/userSlice'
+import {setUserData ,setIsUserLogin} from './redux/features/userSlice'
 
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
@@ -19,8 +19,9 @@ const App = () => {
   useEffect(() => {
     console.log('useEffect')
     const user = authService.getCurrentUser();
-    if(user){
+    if(user._id !== null){
       dispatch(setUserData(user))
+      dispatch(setIsUserLogin(true))
     console.log('useEffect dispatch user')
     }
   }, [isUserLogin]);
@@ -33,7 +34,7 @@ const App = () => {
         {/* <Searchbar /> */}
 
         <div className="h-[100vh] overflow-y-scroll hide-scrollbar ">
-          <div className="h-fit pb-[12rem]">
+          <div className=" pb-[12rem]">
             <Routes>
               <Route path="/" element={<Discover />} />
               <Route path="/playlists" element={<Playlists />} />
@@ -42,13 +43,11 @@ const App = () => {
               <Route path="/artist/:artistId" element={<Artist />} />
               <Route path="/top-charts" element={<Charts />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/share-playlist" element={<SharePlaylist />} />
+              <Route path="/share-playlist/:shareId" element={<SharePlaylist />} />
             </Routes>
-          </div>
-          {/* <div className="xl:sticky relative top-0 h-fit">
-            {/* <TopPlay /> */}
-          {/* </div> */}
         </div>
-      {/* </div> */}
+      </div>
 
       {/* {activeSong?.title && ( */}
       

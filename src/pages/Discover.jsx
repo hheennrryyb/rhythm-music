@@ -21,18 +21,6 @@ const {data, isFetching, error } = useGetSongByGenreQuery(genreListId || "POP");
 
 const genreTitle = genres.find(({value}) => value === genreListId)?.title
 
-// const getPlaylistData = (id) =>{
-//     axios.get(`http://localhost:8080/users/${id}`)
-//     .then((response)=>{
-//       dispatch(setPlaylistsData(response.data.savedPlaylists))
-//     })
-//     .catch((err) => console.log(err))
-//   }
-// dispatch(setPlaylistsData(playlistData?.data.savedPlaylists))
-  
-  useEffect(() => {
-    // getPlaylistData('636037d34a75f43b75a7e4a1')
-  }, []);
 
 return (
 

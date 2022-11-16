@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom';
 import { RiCloseLine } from 'react-icons/ri'
-import { HiOutlineMenu } from 'react-icons/hi';
+import { TbUsers } from 'react-icons/tb';
 import axios from 'axios'
 
 import { useDispatch, useSelector } from 'react-redux'
@@ -38,10 +38,12 @@ const SideBar = () => {
       <div className='absolute h-[4rem] bottom-0 left-0 right-0 flex justify-center bg-gradient-to-br from-gray-800 to-[#2a2a80] backdrop-blur-lg z-10'>
         {/* <img src={logo} alt='logo' className='w-full h-14 object-contain' /> */}
         <NavLinks />
-        <div className="dropdown  dropdown-top">
+        <div className="dropdown dropdown-top my-auto">
           <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-16 rounded-full">
-              <img src="https://placeimg.com/80/80/people" />
+            <div className="w-16 rounded-full bg-white/30 p-1">
+            {isUserLogin == true?
+              <img src={`https://avatars.dicebear.com/api/big-smile/:${userData?._id}.svg`} />
+              : <TbUsers className='p-1 w-full h-full'/>}
             </div>
           </label>
           <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
@@ -57,7 +59,6 @@ const SideBar = () => {
                 <li onClick={() => {
                   authService.handleLogout()
                   dispatch(setIsUserLogin(false))
-                  window.reload()
                 }}><Link to='/'>Logout</Link></li>
               </>
             }
