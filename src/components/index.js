@@ -7,6 +7,8 @@ import PlaylistCard from "./PlaylistCard";
 import PlaylistSongCard from './PlaylistSongCard'
 import SignUpForm from './SignUpForm'
 import SignInForm from './SignInForm'
+import Loader from "./Loader";
+import Error from "./Error";
 export {
     SongCard,
     PlayPause,
@@ -16,5 +18,7 @@ export {
     PlaylistCard,
     PlaylistSongCard,
     SignUpForm,
-    SignInForm
+    SignInForm,
+    Loader,
+    Error
 }

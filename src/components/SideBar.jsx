@@ -35,7 +35,7 @@ const SideBar = () => {
 
   return (
     <>
-      <div className='absolute h-[4rem] bottom-0 left-0 right-0 flex justify-center bg-gradient-to-br from-gray-800 to-[#2a2a80] backdrop-blur-lg z-10'>
+      <div className='absolute h-[4rem] bottom-0 left-0 right-0 flex justify-center bg-gradient-to-br from-[#4a4a4a] to-[#272727]/90 backdrop-blur-lg z-10'>
         {/* <img src={logo} alt='logo' className='w-full h-14 object-contain' /> */}
         <div className='flex flex-wrap items-center justify-between md:justify-center md:gap-[10%] w-full px-5 sm:px-[6rem]'>
         <div className="dropdown dropdown-top my-auto ">

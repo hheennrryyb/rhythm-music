@@ -8,7 +8,7 @@ import { Discover, Playlists, SinglePlaylist, Song, Artist, Charts, Login, Share
 import authService from './services/auth.service';
 import {useDispatch} from 'react-redux'
 import {setUserData ,setIsUserLogin} from './redux/features/userSlice'
-
+import logo from './assets/Logo2.svg'
 const App = () => {
   const { activeSong } = useSelector((state) => state.player);
   const { isUserLogin } = useSelector((state) => state.user);
@@ -28,10 +28,13 @@ const App = () => {
 
 
   return (
-    <div className=" flex">
+    <div className="">
       
       {/* <div className="flex-1 flex flex-col bg-gradient-to-br from-black to-[#121286]"> */}
         {/* <Searchbar /> */}
+        <div className='hidden sm:block'>
+        <img src={logo} className='absolute z-50 w-[12rem] left-[70vw] lg:left-[80vw] mt-4 '/>
+        </div>
 
         <div className="h-[100vh] overflow-y-scroll hide-scrollbar ">
           <div className=" pb-[12rem]">

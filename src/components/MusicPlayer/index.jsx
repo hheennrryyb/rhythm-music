@@ -52,7 +52,7 @@ const MusicPlayer = () => {
   };
 
   return (
-        <div className="absolute h-[7.5rem] py-2 sm:h-28 bottom-[3.6rem] left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
+        <div className="absolute h-[7.5rem] py-2 sm:h-28 bottom-[3.6rem] left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#51D5FF]/10 backdrop-blur-lg rounded-t-3xl z-10">
           <div className="relative px-0 sm:px-[5rem] w-full flex flex-wrap items-center justify-center ">
             
             <div className="flex lg:block order-2 sm:order-1 w-full sm:w-auto">

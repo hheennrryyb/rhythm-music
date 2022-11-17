@@ -1,5 +1,5 @@
 import React from 'react'
-import {PlaylistCard} from '../components'
+import {PlaylistCard, Loader, Error} from '../components'
 import { useDispatch, useSelector } from 'react-redux'
 import axios from 'axios';
 
@@ -16,7 +16,6 @@ function Playlists() {
 // const [playlistsData, setPlaylistsData] = useState()
 const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId,{skip: !isUserLogin});
 
-
 const [addPlaylist] = useAddNewPlaylistMutation()
 const handleNewPlaylist = (event) => {
   event.preventDefault();
@@ -30,16 +29,23 @@ const handleNewPlaylist = (event) => {
   toast.success(`Successfully Created Playlist ${playlistData.playlistName}`);
 }
 
-  return (
-    <div className='flex flex-col px-28'>
+if(isFetchingPlaylistsData) return <Loader title='Loading Songs...' />
+if(error) return <Error/>
 
-    {isUserLogin === true? <div className=''>
-      <div className='form-control my-auto'>
+  return (
+    <div className='w-[100vw]  px-28'>
+
+    {isUserLogin === true? 
+    <div className='mt-4'>
+      <div className='flex items-center'>
+      <h1 className='text-[4rem] font-semibold '>My Playlists</h1>
+      <div className='form-control ml-5'>
           <form onSubmit={handleNewPlaylist} className='input-group'>
             <input className='input input-bordered w-[10rem]' placeholder='Playlist Name' name='playlistName' />
             <button className='btn btn-square '>ADD</button>
           </form>
         </div>
+      </div>
 
     <div className='flex flex-wrap justify-center gap-8 '>
     {playlistsData?.savedPlaylists.map((playlistCard)=>(
@@ -52,6 +58,7 @@ const handleNewPlaylist = (event) => {
     ))}
     </div>
     </div> 
+
     : <div>
       <h2>Please Login Below To Use The Playlist Feature</h2>
       </div>}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useGetTopChartsQuery } from '../redux/services/shazamCore'
 import { useDispatch, useSelector } from 'react-redux'
-import { SongCard } from '../components'
+import { SongCard, Loader, Error } from '../components'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FreeMode } from 'swiper';
 
@@ -32,6 +32,8 @@ function Charts() {
     const { activeSong, isPlaying, genreListId } = useSelector((state) => state.player)
     const artistData = isFetching === !true?([...data].sort(() => 0.5 - Math.random())).slice(0, 20): null
 
+    if(isFetching) return <Loader title='Loading Songs...' />
+    if(error) return <Error/>
     return (
         <div className='flex flex-col'>
 
