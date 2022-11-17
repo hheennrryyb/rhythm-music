@@ -6,6 +6,7 @@ import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
 import {useGetPlaylistDataQuery, useDeleteSongPlaylistMutation} from '../redux/services/rhythmUser'
 import toast, { Toaster } from 'react-hot-toast';
+import {AiOutlineDelete} from 'react-icons/ai'
 
 const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const {userData} = useSelector((state) => state.user)
@@ -14,7 +15,7 @@ const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const {playlistId} = useParams()
   const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId);
   const [DeleteSongPlaylist] = useDeleteSongPlaylistMutation()
-  console.log(playlistsData)
+
 
   // const {playlistsData, playlistIsFetching, playlistError } = useGetPlaylistDataQuery(userId);
   const handlePauseClick = () => {
@@ -52,19 +53,21 @@ const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
         </div>
         <img alt="song_img" src={song.images?.coverart} />
       </div>
-      <div className='mt-4 flex flex-col'>
-        <p className='font-semibold text-lg text-white truncate'>
-          <Link to={`/songs/${song?.key}`}>
+      <div className='mt-4 flex flex-row justify-between'>
+        <div>
+        <p className='font-semibold text-lg text-white truncate w-[11rem]'>
+          {/* <Link to={`/songs/${song?.key}`}> */}
             {song.title}
-          </Link>
+          {/* </Link> */}
         </p>
-        <p className='text-sm truncate text-gray-300 mt-1'>
-          <Link to={song.artists ? `/artists/${song?.artists[0]?.adamid}` : '/top-artists'}>
+        <p className='text-sm truncate text-gray-300 mt-1 w-[11rem]'>
+          {/* <Link to={song.artists ? `/artists/${song?.artists[0]?.adamid}` : '/top-artists'}> */}
             {song.subtitle}
-          </Link>
+          {/* </Link> */}
         </p>
         {/* <p onClick={() => handleSaveEvent()}>Like song</p> */}
-          <div onClick={()=> handleDeleteEvent()} className="btn m-1">❌</div>
+        </div>
+          <button onClick={()=> handleDeleteEvent()} className="bg-white/10 border-none rounded-lg p-1 btn"><AiOutlineDelete size={22}/></button>
       </div>
     </div>
     // </div>

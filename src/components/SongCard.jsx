@@ -56,14 +56,14 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
       <div className='mt-4 flex flex-row justify-between'>
         <div>
           <p className='font-semibold text-lg text-white truncate w-[10rem]'>
-            <Link to={`/song/${song?.key}`}>
+            {/* <Link to={`/song/${song?.key}`}> */}
               {song.title}
-            </Link>
+            {/* </Link> */}
           </p>
           <p className='text-sm truncate text-gray-300 mt-1 w-[10rem]'>
-            <Link to={song.artists ? `/artist/${song?.artists[0]?.adamid}` : '/top-artists'}>
+            {/* <Link to={song.artists ? `/artist/${song?.artists[0]?.adamid}` : '/top-artists'}> */}
               {song.subtitle}
-            </Link>
+            {/* </Link> */}
           </p>
         </div>
         {/* <p onClick={() => handleSaveEvent()}>Like song</p> */}

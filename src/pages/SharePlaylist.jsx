@@ -42,6 +42,9 @@ function SharePlaylist() {
             </div>
             </div>
         </div> :
+        <div>
+            <h2>{sharedPlaylist?.playlistName}</h2>
+            <h2>{sharedPlaylist?.description}</h2>
         <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
             {sharedPlaylist && sharedPlaylist.songsData.map((song, i) => (
                 <SongCard
@@ -54,7 +57,9 @@ function SharePlaylist() {
                 />
             ))}
 
-        </div>}
+        </div>
+        </div>
+        }
         </div>
     )
 }

@@ -52,37 +52,37 @@ const MusicPlayer = () => {
   };
 
   return (
-        <div className="absolute h-28 bottom-[3.5rem] left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
-          <div className="relative px-[5rem] w-full flex items-center justify-center ">
-            <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
+        <div className="absolute h-[7.5rem] py-2 sm:h-28 bottom-[3.6rem] left-0 right-0 flex animate-slideup bg-gradient-to-br from-white/10 to-[#2a2a80] backdrop-blur-lg rounded-t-3xl z-10">
+          <div className="relative px-0 sm:px-[5rem] w-full flex flex-wrap items-center justify-center ">
             
-            <div className="flex flex-col mx-[5rem]">
-              <Controls
-                isPlaying={isPlaying}
-                isActive={isActive}
-                repeat={repeat}
-                setRepeat={setRepeat}
-                shuffle={shuffle}
-                setShuffle={setShuffle}
-                currentSongs={currentSongs}
-                handlePlayPause={handlePlayPause}
-                handlePrevSong={handlePrevSong}
-                handleNextSong={handleNextSong}
-              />
-             </div>
-            <div className="flex flex-col">
-              <Player
-                activeSong={activeSong}
-                isPlaying={isPlaying}
-                seekTime={seekTime}
-                repeat={repeat}
-                currentIndex={currentIndex}
-                onEnded={handleNextSong}
-                onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
-                onLoadedData={(event) => setDuration(event.target.duration)}
-              />
+            <div className="flex lg:block order-2 sm:order-1 w-full sm:w-auto">
+              <div className="flex flex-row w-full justify-between lg:justify-start  px-[2rem] ">
+                <Track isPlaying={isPlaying} isActive={isActive} activeSong={activeSong} />
+                <Controls
+                  isPlaying={isPlaying}
+                  isActive={isActive}
+                  repeat={repeat}
+                  setRepeat={setRepeat}
+                  shuffle={shuffle}
+                  setShuffle={setShuffle}
+                  currentSongs={currentSongs}
+                  handlePlayPause={handlePlayPause}
+                  handlePrevSong={handlePrevSong}
+                  handleNextSong={handleNextSong}
+                />
+                <Player
+                  activeSong={activeSong}
+                  isPlaying={isPlaying}
+                  seekTime={seekTime}
+                  repeat={repeat}
+                  currentIndex={currentIndex}
+                  onEnded={handleNextSong}
+                  onTimeUpdate={(event) => setAppTime(event.target.currentTime)}
+                  onLoadedData={(event) => setDuration(event.target.duration)}
+                />
+              </div>
             </div>
-            <div>
+            <div className="sm:order-2 order-1 w-full lg:w-[30rem] mx-[2rem]">
             <Seekbar
                 value={appTime}
                 min="0"

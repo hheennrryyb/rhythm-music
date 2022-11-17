@@ -67,14 +67,14 @@ const handleGuestUser = async () => {
     //     email: 'Guest@gmail.com',
     //     password:`guestpass${random.toString()}`,
     // }
-    const guestUser = {
+    const newUser = {
         username: 'testingguest22',
         email: 'Guest@gmail.com',
         password:'testpass',
     }
-    console.log(guestUser)
+    console.log(newUser)
     // const guest = await 
-    handleRegister(guestUser)
+    handleRegister(newUser)
     sessionStorage.setItem('guestUser', true)
     // handleSignIn(guest)
 }

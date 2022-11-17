@@ -16,8 +16,6 @@ function Playlists() {
 // const [playlistsData, setPlaylistsData] = useState()
 const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId,{skip: !isUserLogin});
 
-console.log('is fetching'+isFetchingPlaylistsData)
-console.log('error'+error)
 
 const [addPlaylist] = useAddNewPlaylistMutation()
 const handleNewPlaylist = (event) => {
@@ -33,7 +31,8 @@ const handleNewPlaylist = (event) => {
 }
 
   return (
-    <>
+    <div className='flex flex-col px-28'>
+
     {isUserLogin === true? <div className=''>
       <div className='form-control my-auto'>
           <form onSubmit={handleNewPlaylist} className='input-group'>
@@ -41,6 +40,7 @@ const handleNewPlaylist = (event) => {
             <button className='btn btn-square '>ADD</button>
           </form>
         </div>
+
     <div className='flex flex-wrap justify-center gap-8 '>
     {playlistsData?.savedPlaylists.map((playlistCard)=>(
       <PlaylistCard
@@ -50,13 +50,12 @@ const handleNewPlaylist = (event) => {
       songsData={playlistCard.songsData}
       />
     ))}
-
     </div>
     </div> 
     : <div>
       <h2>Please Login Below To Use The Playlist Feature</h2>
       </div>}
-    </>
+    </div>
   )
 }
 
