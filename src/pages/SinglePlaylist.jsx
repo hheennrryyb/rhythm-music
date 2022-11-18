@@ -4,21 +4,19 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { PlaylistSongCard } from '../components';
 import { useGetPlaylistSongsDataQuery } from '../redux/services/rhythmUser'
-import { useDispatch, useSelector } from 'react-redux'
-import toast, { Toaster } from 'react-hot-toast';
-// import { useGetSongByGenreQuery } from '../redux/services/shazamCore'
+import { useSelector } from 'react-redux'
+import toast from 'react-hot-toast';
 
 function SinglePlaylist() {
   const [shareLink, setShareLink] = useState('')
   const { userData, isUserLogin } = useSelector((state) => state.user)
   const userId = userData?._id
   const { playlistId } = useParams()
-  // const [playlistData, setPlaylistData] = useState()
-  // const [getPlaylistSongsData] = useGetPlaylistSongsDataQuery()
-  // console.log(playlistId.toString())
+
   const { activeSong, isPlaying } = useSelector((state) => state.player)
   const { data: playlistData, isFetching: isFetchingPlaylistData, error } = useGetPlaylistSongsDataQuery({ userId, playlistId }, { skip: !isUserLogin });
   
+  const rhythmWebBaseUrl = process.env.REACT_APP_WEB_URL
   const rhythmBaseUrl = process.env.REACT_APP_BASE_URL
   const [playlistName, setPlaylistName] = useState('')
   const [description, setDescription] = useState('')
@@ -28,7 +26,7 @@ function SinglePlaylist() {
     setPlaylistName(playlistData?.playlistName)
     setDescription(playlistData?.description)
   },[playlistData])
-  // const { data, isFetching, error } = useGetSongByGenreQuery(genreListId);
+
 
   console.log(playlistData)
   const handleShareLink = () => {
@@ -54,13 +52,6 @@ function SinglePlaylist() {
     }
   }
   
-  // const handleEditPlaylistName = (text) =>{
-  //   setPlaylistName(text)
-  // }
-  // const handleEditDescription = (text) =>{
-  //   setDescription(text)
-  // }
-
   
   const toggleEdit = () => {
     //  passed function to setState
@@ -90,7 +81,7 @@ function SinglePlaylist() {
           </div>
 
           <div className="flex flex-col w-[23rem]">
-            <input className='mt-6 input ' onClick={() => {navigator.clipboard.writeText(`${rhythmBaseUrl}/share-playlist/${shareLink}`) 
+            <input className='mt-6 input ' onClick={() => {navigator.clipboard.writeText(`${rhythmWebBaseUrl}/share-playlist/${shareLink}`) 
             toast.success(`Share Link Copied To Your Clipboard`)}} value={'share-playlist/' + shareLink} readOnly  />
             <button className='mt-3 btn ' onClick={() => handleShareLink()}>Share Playlist</button>
           </div>

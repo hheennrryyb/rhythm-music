@@ -3,16 +3,15 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { SongCard } from '../components'
-import {useNavigate} from 'react-router-dom'
 
 function SharePlaylist() {
     let { shareId } = useParams()
     const rhythmBaseUrl = process.env.REACT_APP_BASE_URL
     const [sharedPlaylist, setSharedPlaylist] = useState()
     const { activeSong, isPlaying } = useSelector((state) => state.player)
-    const navigate = useNavigate()
+
     const handleShareData = () => (
         shareId !== undefined ?
             axios.get(`${rhythmBaseUrl}/sharePlaylist/${shareId}`)
@@ -43,10 +42,12 @@ function SharePlaylist() {
             </div>
             </div>
         </div> :
-        <div>
-            <h2>{sharedPlaylist?.playlistName}</h2>
-            <h2>{sharedPlaylist?.description}</h2>
-        <div className='flex flex-wrap sm:justify-start justify-center gap-8'>
+        <div className='flex flex-col w-[100vw] lg:px-28 sm:px-5 mt-5'>
+            <h2 className='text-white text-5xl font-bold p-2'>{sharedPlaylist?.playlistName}</h2>
+            <h2 className='text-white bg-transparent p-2 ' >Created By: {sharedPlaylist?.username}</h2>
+            {/* <h2 className='text-white bg-transparent p-2 ' >Created On: {sharedPlaylist?.created}</h2> */}
+            <h2 className='text-white bg-transparent p-2 mt-3 mb-3' >{sharedPlaylist?.description}</h2>
+        <div className='flex flex-wrap justify-center gap-8'>
             {sharedPlaylist && sharedPlaylist.songsData.map((song, i) => (
                 <SongCard
                     key={song.key}
@@ -57,7 +58,6 @@ function SharePlaylist() {
                     i={i}
                 />
             ))}
-
         </div>
         </div>
         }

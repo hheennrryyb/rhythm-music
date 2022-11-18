@@ -10,11 +10,8 @@ import {useDispatch} from 'react-redux'
 import {setUserData ,setIsUserLogin} from './redux/features/userSlice'
 import logo from './assets/Logo2.svg'
 const App = () => {
-  // const { activeSong } = useSelector((state) => state.player);
   const { isUserLogin } = useSelector((state) => state.user);
   const dispatch = useDispatch()
-  console.log(isUserLogin)
-
 
   useEffect(() => {
     console.log('useEffect')
