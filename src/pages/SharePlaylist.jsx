@@ -24,7 +24,6 @@ function SharePlaylist() {
         handleShareData()
     }, [shareId])
 
-    console.log(shareId)
     return (
         <div className='w-[100vw]'>
         {shareId === undefined ?

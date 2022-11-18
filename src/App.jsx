@@ -14,12 +14,10 @@ const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('useEffect')
     const user = authService.getCurrentUser();
     if(user._id !== null){
       dispatch(setUserData(user))
       dispatch(setIsUserLogin(true))
-    console.log('useEffect dispatch user')
     }
   }, [isUserLogin]);
 

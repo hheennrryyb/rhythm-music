@@ -26,7 +26,6 @@ const handleSignIn = (userSignIn) => {
         .then((response) => {
             const token = response.data.token
             handleAuth(token)
-            console.log(token)
         }).catch((error) => {
             console.error(error)
         })
@@ -55,7 +54,6 @@ const getCurrentUser = () => {
         username: sessionStorage.getItem("username"),
         _id: sessionStorage.getItem("_id")
     }
-    console.log(userData)
     return userData
 }
 

@@ -28,7 +28,6 @@ function SinglePlaylist() {
   },[playlistData])
 
 
-  console.log(playlistData)
   const handleShareLink = () => {
     if (isUserLogin) {
       const sharePlaylistData = {
@@ -38,7 +37,6 @@ function SinglePlaylist() {
         songsData: playlistData.songsData,
         created: playlistData.createdAt,
       }
-      // console.log(sharePlaylistData)
       axios.post(`${rhythmBaseUrl}/sharePlaylist/create`, sharePlaylistData)
         .then((response) => {
           const shareId = response.data._id

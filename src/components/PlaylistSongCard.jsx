@@ -26,8 +26,6 @@ const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
   }
 
   const handleDeleteEvent = (playlist) => {
-    console.log(song.title + song.key)
-    console.log(playlistId)
     const songId = song.key
     DeleteSongPlaylist({userId, playlistId, songId})
     toast.success(`Successfully Deleted ${song.title}`);
