@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-
+const rhythmBaseUrl = process.env.REACT_APP_BASE_URL
 // const options = {
 //     method: 'GET',
 //     headers: {
@@ -16,7 +16,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 export const rhythmUserApi = createApi({
     reducerPath:'rhythmUserApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'http://localhost:8080/users',
+        baseUrl: `${rhythmBaseUrl}/users`,
         prepareHeaders: (headers) => {
             // headers.set('X-RapidAPI-Key', 'c37a41b4e4mshb7fca52298c0fd1p18dab5jsn6f584d51c232')
             return headers

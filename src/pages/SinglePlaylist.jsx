@@ -19,6 +19,7 @@ function SinglePlaylist() {
   const { activeSong, isPlaying } = useSelector((state) => state.player)
   const { data: playlistData, isFetching: isFetchingPlaylistData, error } = useGetPlaylistSongsDataQuery({ userId, playlistId }, { skip: !isUserLogin });
   
+  const rhythmBaseUrl = process.env.REACT_APP_BASE_URL
   const [playlistName, setPlaylistName] = useState('')
   const [description, setDescription] = useState('')
   const [editable, setEditable] = useState(true)
@@ -40,7 +41,7 @@ function SinglePlaylist() {
         created: playlistData.createdAt,
       }
       // console.log(sharePlaylistData)
-      axios.post(`http://localhost:8080/sharePlaylist/create`, sharePlaylistData)
+      axios.post(`${rhythmBaseUrl}/sharePlaylist/create`, sharePlaylistData)
         .then((response) => {
           const shareId = response.data._id
           setShareLink(shareId)
@@ -69,7 +70,7 @@ function SinglePlaylist() {
       playlistName: playlistName,
       description: description
     }
-    axios.patch(`http://localhost:8080/users/${userId}/${playlistId}`,patchBody)
+    axios.patch(`${rhythmBaseUrl}/users/${userId}/${playlistId}`,patchBody)
     .then((response)=>{
       console.log(response)
     })
@@ -89,7 +90,7 @@ function SinglePlaylist() {
           </div>
 
           <div className="flex flex-col w-[23rem]">
-            <input className='mt-6 input ' onClick={() => {navigator.clipboard.writeText('http://localhost:3000/share-playlist/' + shareLink) 
+            <input className='mt-6 input ' onClick={() => {navigator.clipboard.writeText(`${rhythmBaseUrl}/share-playlist/${shareLink}`) 
             toast.success(`Share Link Copied To Your Clipboard`)}} value={'share-playlist/' + shareLink} readOnly  />
             <button className='mt-3 btn ' onClick={() => handleShareLink()}>Share Playlist</button>
           </div>

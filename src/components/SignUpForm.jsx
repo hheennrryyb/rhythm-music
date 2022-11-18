@@ -1,30 +1,20 @@
 import React from 'react'
 import { useState } from 'react'
-import axios from 'axios'
 import authService from '../services/auth.service'
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
-function SignUpForm() {
+function SignUpForm({SetToggleForm}) {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
-    // const [passwordValidClass, setPasswordValidClass] = useState("");
 
     const handleInputChange = (event, setStateFunc) => {
         setStateFunc(event.target.value);
     }
 
-    // const handleConfirmPasswordBlur = () => {
-    //     if (isConfirmPasswordValid()) {
-    //         setPasswordValidClass('');
-    //     } else {
-    //         setPasswordValidClass('form__input--invalid');
-    //     }
-    // }
-
     const isPasswordValid = () => {
-        if (password !== '') {
+        if (password.length > 3) {
             return true;
         }
         return false;
@@ -40,18 +30,21 @@ function SignUpForm() {
 
     const isFormValid = () => {
         if (email === '' || !email.includes('@')) {
+            toast.error(`Must include email with correct format`)
             return false;
         }
         if (!isPasswordValid()) {
+            toast.error(`Your password must be longer than 3 characters`)
             return false;
         }
         if (!isConfirmPasswordValid()) {
+            toast.error(`Passwords don't match`)
             return false;
         }
         return true;
     };
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         if (isFormValid()) {
             const newUser = {
@@ -59,19 +52,21 @@ function SignUpForm() {
                 email: event.target.email.value,
                 password: event.target.password.value,
             }
-            authService.handleRegister(newUser)
-            toast.success(`Successfully Created ${newUser.username} Account`)
-            event.target.reset();
+            const res = await authService.handleRegister(newUser)
+            if(res !== 'Username already taken'){
+                toast.success(`Successfully Created ${newUser.username} Account`)
+                SetToggleForm(false)
+            }else{
+                toast.error(`The Username ${newUser.username} is already taken`)
+            }
         } else {
-            alert("Failed to sign up, you have errors in your form");
-            event.target.reset();
-            event.target.confirmPassword.focus();
+            toast.error(`Please complete register form`)
         }
     };
     return (
         <div className='flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
             <div className="w-full max-w-md space-y-8">
-                <form onSubmit={handleSubmit} className='space-y-6'>
+                <form name='form' onSubmit={handleSubmit} className='space-y-6'>
                     <h2 className='text-xl font-bold text-white'>Create A Rhythm Account</h2>
                     <div className="rounded-md shadow-sm">
                         <label>

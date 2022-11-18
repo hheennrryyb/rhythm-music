@@ -20,13 +20,12 @@ const DiscoverGenreList = () => {
     const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
     return (
         <>
-            <div className="w-full  mt-5 mb-5 ">
-                <h2 className="ml-[4rem] font-bold text-3xl text-white">
-                    Discover
+            <div className='w-full mt-5 mb-5 md:px-28 px-5 flex'>
+                <h2 className='font-bold text-3xl text-white text-left'>Discover</h2>
                 <select
                     onChange={(e) => dispatch(selectGenreListId(e.target.value))}
                     value={genreListId || "POP"}
-                    className=" dropdown bg-transparent text-xl text-white p-3 rounded-lg outline-none sm:mt-0 mt-5"
+                    className=" dropdown bg-transparent text-xl text-white ml-3 mt-2 rounded-lg outline-none"
                 >
                     {genres.map((genre) => (
                         <option key={genre.value} value={genre.value} className='text-md'>
@@ -34,7 +33,7 @@ const DiscoverGenreList = () => {
                         </option>
                     ))}
                 </select>
-                </h2>
+                
             </div>
 
             <div className="flex flex-wrap justify-center gap-8">
@@ -71,6 +70,7 @@ const Discover = () => {
         <div className="flex flex-col">
             <GenreList genreListId={'ELECTRONIC'}/>
             <GenreList genreListId={'POP'}/>
+            <GenreList genreListId={'HIP_HOP_RAP'}/>
             <DiscoverGenreList />
 
         </div>

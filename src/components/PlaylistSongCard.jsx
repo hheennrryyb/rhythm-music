@@ -1,11 +1,11 @@
-import { Link, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
-import axios from 'axios'
+
 import PlayPause from './PlayPause';
 import { playPause, setActiveSong } from '../redux/features/playerSlice';
-import {useGetPlaylistDataQuery, useDeleteSongPlaylistMutation} from '../redux/services/rhythmUser'
-import toast, { Toaster } from 'react-hot-toast';
+import {useDeleteSongPlaylistMutation} from '../redux/services/rhythmUser'
+import toast from 'react-hot-toast';
 import {AiOutlineDelete} from 'react-icons/ai'
 
 const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
@@ -13,11 +13,10 @@ const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
   const userId = userData?._id
   const dispatch = useDispatch()
   const {playlistId} = useParams()
-  const {data: playlistsData, isFetching: isFetchingPlaylistsData, error } = useGetPlaylistDataQuery(userId);
+
   const [DeleteSongPlaylist] = useDeleteSongPlaylistMutation()
 
 
-  // const {playlistsData, playlistIsFetching, playlistError } = useGetPlaylistDataQuery(userId);
   const handlePauseClick = () => {
     dispatch(playPause(false))
   }
@@ -28,18 +27,14 @@ const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
 
   const handleDeleteEvent = (playlist) => {
     console.log(song.title + song.key)
-    // console.log(playlist._id)
     console.log(playlistId)
     const songId = song.key
-    // console.log(userId + playlistId + songId)
-    // axios.post(`http://localhost:8080/users/${userId}/${playlist._id}`,song)
-    // .then((response)=>(console.log(response)))
     DeleteSongPlaylist({userId, playlistId, songId})
     toast.success(`Successfully Deleted ${song.title}`);
   }
 
   return (
-    // <div className='block'>
+
     <div className='flex flex-col w-[250px] p-4 bg-gray-600 bg-opacity-80 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
       <div className='relative w-full h-56 group'>
         <div className={`absolute inset-0 justify-center items-center bg-black bg-opacity-50 group-hover:flex ${activeSong?.title === song.title ? 'flex bg-black gb-opacity-70' : 'hidden'}`}>
@@ -56,21 +51,17 @@ const PlaylistSongCard = ({ song, isPlaying, activeSong, i, data }) => {
       <div className='mt-4 flex flex-row justify-between'>
         <div>
         <p className='font-semibold text-lg text-white truncate w-[11rem]'>
-          {/* <Link to={`/songs/${song?.key}`}> */}
             {song.title}
-          {/* </Link> */}
         </p>
         <p className='text-sm truncate text-gray-300 mt-1 w-[11rem]'>
-          {/* <Link to={song.artists ? `/artists/${song?.artists[0]?.adamid}` : '/top-artists'}> */}
             {song.subtitle}
-          {/* </Link> */}
         </p>
-        {/* <p onClick={() => handleSaveEvent()}>Like song</p> */}
+
         </div>
           <button onClick={()=> handleDeleteEvent()} className="bg-white/10 border-none rounded-lg p-1 btn"><AiOutlineDelete size={22}/></button>
       </div>
     </div>
-    // </div>
+
   )
 };
 

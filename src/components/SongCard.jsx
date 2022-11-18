@@ -27,11 +27,7 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
   }
 
   const handleSaveEvent = (playlist) => {
-    // console.log("Song name " + song.title)
-    // console.log(playlist)
     const playlistId = playlist?._id
-    // axios.post(`http://localhost:8080/users/${userId}/${playlist._id}`,song)
-    // .then((response)=>(console.log(response)))
     AddNewSongPlaylist({ userId, playlistId, song })
     toast.success(`Successfully Added ${song.title} to ${playlist.playlistName}`);
 

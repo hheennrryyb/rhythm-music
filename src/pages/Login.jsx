@@ -11,10 +11,12 @@ function Login() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const handleGustLogin = () =>{
-        authService.handleGuestUser()
-        dispatch(setIsUserLogin(true))
-        navigate('/')
+    const handleGustLogin = async () =>{
+        const res = await authService.handleGuestUser()
+        setTimeout(()=>{
+            dispatch(setIsUserLogin(true))
+            navigate('/')
+        },500)
     }
 
     return (
@@ -23,7 +25,7 @@ function Login() {
         <div className='flex flex-col items-center justify-center'>
         {toggleForm === true &&
         <div className='card bg-white/10 bg-opacity-10 backdrop-blur-sm animate-slideup w-full sm:w-[30rem] sm:mt-[4rem]'>
-        <SignUpForm/>
+        <SignUpForm SetToggleForm={SetToggleForm}/>
         <button className='btn' onClick={()=> SetToggleForm(false)}>Signed Up Already?</button>
         </div>
         }

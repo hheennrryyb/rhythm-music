@@ -33,15 +33,15 @@ if(isFetchingPlaylistsData) return <Loader title='Loading Songs...' />
 if(error) return <Error/>
 
   return (
-    <div className='w-[100vw]  px-28'>
+    <div className='w-[100vw]  sm:px-28 px-5'>
 
     {isUserLogin === true? 
     <div className='mt-4'>
-      <div className='flex items-center'>
+      <div className='flex flex-wrap items-center justify-start mb-7'>
       <h1 className='text-[3rem] font-bold text-white '>My Playlists</h1>
-      <div className='form-control ml-5'>
+      <div className='form-control ml-5 w-full sm:w-[25rem] mx-2'>
           <form onSubmit={handleNewPlaylist} className='input-group'>
-            <input className='input input-bordered w-[10rem]' placeholder='Playlist Name' name='playlistName' />
+            <input className='input input-bordered  w-full' placeholder='Playlist Name' name='playlistName' />
             <button className='btn btn-square '>ADD</button>
           </form>
         </div>
@@ -60,8 +60,8 @@ if(error) return <Error/>
     </div>
     </div> 
 
-    : <div>
-      <h2>Please Login Below To Use The Playlist Feature</h2>
+    : <div className='flex justify-center'>
+      <h2 className='sm:text-[2rem] text-center font-bold text-white mt-[30%]'>Please Login Below To Use The Playlist Feature</h2>
       </div>}
     </div>
   )

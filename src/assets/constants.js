@@ -11,10 +11,14 @@ export const genres = [
   { title: 'Latin', value: 'LATIN' },
   { title: 'Film', value: 'FILM_TV' },
   { title: 'Country', value: 'COUNTRY' },
+  { title: 'Afro Beats', value: 'AFRO_BEATS' },
   { title: 'Worldwide', value: 'WORLDWIDE' },
   { title: 'Reggae', value: 'REGGAE_DANCE_HALL' },
   { title: 'House', value: 'HOUSE' },
   { title: 'K-Pop', value: 'K_POP' },
+  { title: 'French Pop', value: 'FRENCH_POP' },
+  { title: 'Songwriter', value: 'SINGER_SONGWRITER' },
+  { title: 'Mexico', value: 'REG_MEXICO' },
 ];
 
 export const links = [

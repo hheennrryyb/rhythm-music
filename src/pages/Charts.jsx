@@ -11,8 +11,7 @@ import 'swiper/css/free-mode'
 const ArtistCard = ({ data, i }) => {
 
     return (
-
-        <div className='flex flex-col w-[250px] p-4 bg-gray-600 bg-opacity-70 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
+        <div className='flex flex-col w-[250px] p-4 bg-white/10 bg-opacity-10 backdrop-blur-sm animate-slideup rounded-lg cursor-pointer'>
             <div className='w-full h-56'>
                 <img className='rounded-full' alt="song_img" src={data.share?.avatar || data.images?.coverart } />
             </div>
@@ -20,8 +19,6 @@ const ArtistCard = ({ data, i }) => {
                 {data.subtitle}
             </p>
         </div>
-
-
     )
 }
 
@@ -37,7 +34,7 @@ function Charts() {
     return (
         <div className='flex flex-col'>
 
-            <div className='w-full flex justify-between items-center sm:flex-row flex-col mt-5 mb-5 px-28'>
+            <div className='w-full mt-5 mb-5 md:px-28 px-5 '>
                 <h2 className='font-bold text-3xl text-white text-left'>Trending Artists</h2>
             </div>
 
@@ -66,7 +63,7 @@ function Charts() {
                 </Swiper>
             </div>
 
-            <div className='w-full flex justify-between items-center sm:flex-row flex-col mt-5 mb-5 px-28'>
+            <div className='w-full mt-5 mb-5 md:px-28 px-5 '>
                 <h2 className='font-bold text-3xl text-white text-left'>Top Charts</h2>
             </div>
 

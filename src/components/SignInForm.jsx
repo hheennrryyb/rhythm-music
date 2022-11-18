@@ -1,10 +1,11 @@
 import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import authService from '../services/auth.service'
-import {setIsUserLogin, setUserData} from '../redux/features/userSlice'
+import {setIsUserLogin} from '../redux/features/userSlice'
 import {useNavigate} from 'react-router-dom'
+import toast from 'react-hot-toast';
 
 function SignUpForm() {
     const dispatch = useDispatch()
@@ -26,34 +27,38 @@ function SignUpForm() {
 
     const isFormValid = () => {
         if (!isPasswordValid()) {
+            toast.error(`Please Enter Your Password`)
+            return false;
+        }
+        if (username === ''){
+            toast.error(`Please Enter Your Username`)
             return false;
         }
         return true;
     };
 
     const handleSubmit = (event) => {
+        const rhythmBaseUrl = process.env.REACT_APP_BASE_URL
         event.preventDefault();
         if (isFormValid()) {
             const userSignIn= {
             username: event.target.username.value,
             password: event.target.password.value,
             }
-                axios.post(`http://localhost:8080/users/auth/signin`, userSignIn)
+                axios.post(`${rhythmBaseUrl}/users/auth/signin`, userSignIn)
                     .then((response) => {
                         const token = response.data.token
                         return authService.handleAuth(token)
                     }).then(()=>{
+                        toast.success(`Welcome ${userSignIn.username}!`)
                         dispatch(setIsUserLogin(true))
                         navigate('/')
                     })
                     .catch((error) => {
                         console.error(error)
+                        toast.error(`Theres been an error, Your account doesn't exist`)
                     })
                 
-        } else {
-            alert("Failed to sign up, you have errors in your form");
-            event.target.reset();
-            event.target.confirmPassword.focus();
         }
     }
 

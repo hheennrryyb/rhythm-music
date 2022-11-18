@@ -2,12 +2,12 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import { setUserData } from '../redux/features/userSlice'
 import axios from 'axios'
-
+const rhythmBaseUrl = process.env.REACT_APP_BASE_URL
 
 
 const handleAuth = async (token) => {
     const body = {}
-    const res = await axios.post(`http://localhost:8080/users/profile`, body, {
+    const res = await axios.post(`${rhythmBaseUrl}/users/profile`, body, {
         headers: {
             'authorization': 'JWT ' + token,
             'Content-Type': 'application/x-www-form-urlencoded'
@@ -22,7 +22,7 @@ const handleAuth = async (token) => {
 }
 
 const handleSignIn = (userSignIn) => {
-    axios.post(`http://localhost:8080/users/auth/signin`, userSignIn)
+    axios.post(`${rhythmBaseUrl}/users/auth/signin`, userSignIn)
         .then((response) => {
             const token = response.data.token
             handleAuth(token)
@@ -33,7 +33,13 @@ const handleSignIn = (userSignIn) => {
 }
 
 const handleRegister = async (newUser) => {
-    const res = await axios.post(`http://localhost:8080/users/auth/register`, newUser)
+
+    const res = await axios.post(`${rhythmBaseUrl}/users/auth/register`, newUser)
+    return res.data
+}
+
+const handleGuestRegister = async (newUser) => {
+    const res = await axios.post(`${rhythmBaseUrl}/users/auth/register`, newUser)
     return newUser
 }
 
@@ -60,12 +66,9 @@ const handleGuestUser = async () => {
         email: `Guest${random}@gmail.com`,
         password:`guestpass${random.toString()}`,
     }
-    const response = await handleRegister(newUser)
+    const response = await handleGuestRegister(newUser)
     handleSignIn(response)
-
 }
-
-
 
 const authService = {
     handleAuth,
@@ -74,6 +77,7 @@ const authService = {
     handleLogout,
     getCurrentUser,
     handleGuestUser,
+    handleGuestRegister,
 
 }
 

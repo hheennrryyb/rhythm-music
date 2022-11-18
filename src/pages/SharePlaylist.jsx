@@ -9,12 +9,13 @@ import {useNavigate} from 'react-router-dom'
 
 function SharePlaylist() {
     let { shareId } = useParams()
+    const rhythmBaseUrl = process.env.REACT_APP_BASE_URL
     const [sharedPlaylist, setSharedPlaylist] = useState()
     const { activeSong, isPlaying } = useSelector((state) => state.player)
     const navigate = useNavigate()
     const handleShareData = () => (
         shareId !== undefined ?
-            axios.get(`http://localhost:8080/sharePlaylist/${shareId}`)
+            axios.get(`${rhythmBaseUrl}/sharePlaylist/${shareId}`)
                 .then((response) => {
                     setSharedPlaylist(response.data)
                 }) : null
