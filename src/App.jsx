@@ -40,9 +40,9 @@ const App = () => {
               <Route path="/share-playlist/:shareId" element={<SharePlaylist />} />
             </Routes>
 
-      </div>
           <MusicPlayer />
           <SideBar />
+      </div>
     </>
   );
 };
