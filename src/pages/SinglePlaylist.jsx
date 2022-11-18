@@ -79,7 +79,7 @@ function SinglePlaylist() {
           </div>
 
           <div className="flex flex-col w-[23rem]">
-            <input className='mt-6 input ' onClick={() => {navigator.clipboard.writeText(`${rhythmWebBaseUrl}/share-playlist/${shareLink}`) 
+            <input className='mt-6 input ' onClick={() => {navigator.clipboard.writeText(`https://rhythmmusic.netlify.app/share-playlist/${shareLink}`) 
             toast.success(`Share Link Copied To Your Clipboard`)}} value={'share-playlist/' + shareLink} readOnly  />
             <button className='mt-3 btn ' onClick={() => handleShareLink()}>Share Playlist</button>
           </div>
