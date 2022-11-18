@@ -67,7 +67,7 @@ const Discover = () => {
     const genreTitle = genres.find(({ value }) => value === genreListId)?.title;
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col pb-[12rem]">
             <GenreList genreListId={'ELECTRONIC'}/>
             <GenreList genreListId={'POP'}/>
             <GenreList genreListId={'HIP_HOP_RAP'}/>

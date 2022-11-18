@@ -33,7 +33,7 @@ if(isFetchingPlaylistsData) return <Loader title='Loading Songs...' />
 if(error) return <Error/>
 
   return (
-    <div className='w-[100vw]  sm:px-28 px-5'>
+    <div className='w-[100vw]  sm:px-28 px-5 pb-[12rem]'>
 
     {isUserLogin === true? 
     <div className='mt-4'>

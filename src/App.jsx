@@ -29,7 +29,7 @@ const App = () => {
         </div>
 
         <div className="h-[100vh] overflow-y-scroll hide-scrollbar ">
-          <div className=" pb-[12rem]">
+        
             <Routes>
               <Route path="/" element={<Discover />} />
               <Route path="/playlists" element={<Playlists />} />
@@ -39,7 +39,7 @@ const App = () => {
               <Route path="/share-playlist" element={<SharePlaylist />} />
               <Route path="/share-playlist/:shareId" element={<SharePlaylist />} />
             </Routes>
-        </div>
+
       </div>
           <MusicPlayer />
           <SideBar />

@@ -32,7 +32,7 @@ function Charts() {
     if(isFetching) return <Loader title='Loading Songs...' />
     if(error) return <Error/>
     return (
-        <div className='flex flex-col'>
+        <div className='flex flex-col pb-[12rem]'>
 
             <div className='w-full mt-5 mb-5 md:px-28 px-5 '>
                 <h2 className='font-bold text-3xl text-white text-left'>Trending Artists</h2>

@@ -70,7 +70,7 @@ function SinglePlaylist() {
   };
 
   return (
-    <div className='flex flex-col w-[100vw] lg:px-28 sm:px-5'>
+    <div className='flex flex-col w-[100vw] lg:px-28 sm:px-5 pb-[12rem]'>
         <div className="flex flex-wrap items-end bg-gradient-to-br from-white/10 to-[#51D5FF]/10 backdrop-blur-lg rounded-b-3xl p-5">
           <div className='flex flex-col flex-1 mr-5'>
             <input className={`text-white text-5xl font-bold p-2 bg-transparent ${editable === false? "bg-gray-800/50 rounded-lg": "bg-transparent" }`} value={playlistName} onChange={(e)=>setPlaylistName(e.target.value)} readOnly={editable}/>

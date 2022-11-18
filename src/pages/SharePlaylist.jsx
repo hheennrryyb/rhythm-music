@@ -25,7 +25,7 @@ function SharePlaylist() {
     }, [shareId])
 
     return (
-        <div className='w-[100vw]'>
+        <div className='w-[100vw] pb-[12rem]'>
         {shareId === undefined ?
         <div className='flex justify-center mt-[20rem]'>
             <div className=''>
