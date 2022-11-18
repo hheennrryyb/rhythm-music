@@ -53,7 +53,7 @@ const SideBar = () => {
                 <li>
                   <p className="">
                     {/* <span className="badge">Welcome</span> */}
-                    Welcome, {userData?.username}
+                    Welcome, {userData?.username}!
                   </p>
                 </li>
                 <li onClick={() => {

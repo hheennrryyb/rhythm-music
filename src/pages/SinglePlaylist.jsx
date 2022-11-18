@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { PlaylistSongCard } from '../components';
 import { useGetPlaylistSongsDataQuery } from '../redux/services/rhythmUser'
 import { useDispatch, useSelector } from 'react-redux'
-
+import toast, { Toaster } from 'react-hot-toast';
 // import { useGetSongByGenreQuery } from '../redux/services/shazamCore'
 
 function SinglePlaylist() {
@@ -81,14 +81,20 @@ function SinglePlaylist() {
 
   return (
     <div className='flex flex-col w-[100vw] lg:px-28 sm:px-5'>
-        <input className='text-5xl font-bold p-5 bg-transparent' value={playlistName} onChange={(e)=>setPlaylistName(e.target.value)} readOnly={editable}/>
-        <textarea className='bg-transparent' value={description} onChange={(e)=>setDescription(e.target.value)} readOnly={editable} />
-        <button className='btn' onClick={toggleEdit}>{editable === false? "Save": "Edit" }</button>
-      <div className="">
-        <button className='btn' onClick={() => handleShareLink()}>Share Playlist</button>
-        <input className='input w-[32rem]' onClick={() => navigator.clipboard.writeText('http://localhost:3000/share-playlist/' + shareLink)} value={'http://localhost:3000/share-playlist/' + shareLink} readOnly placeholder='Share Link Here' />
-      </div>
-      <div className=''>
+        <div className="flex flex-wrap items-end bg-gradient-to-br from-white/10 to-[#51D5FF]/10 backdrop-blur-lg rounded-b-3xl p-5">
+          <div className='flex flex-col flex-1 mr-5'>
+            <input className={`text-white text-5xl font-bold p-2 bg-transparent ${editable === false? "bg-gray-800/50 rounded-lg": "bg-transparent" }`} value={playlistName} onChange={(e)=>setPlaylistName(e.target.value)} readOnly={editable}/>
+            <textarea className={`text-white bg-transparent resize-none p-2 mt-3 ${editable === false? "bg-gray-800/50 rounded-lg": "bg-transparent" }`} value={description} onChange={(e)=>setDescription(e.target.value)} readOnly={editable} res />
+            <button className='mt-3 btn w-[10rem]' onClick={toggleEdit}>{editable === false? "Save": "Edit" }</button>
+          </div>
+
+          <div className="flex flex-col w-[23rem]">
+            <input className='mt-6 input ' onClick={() => {navigator.clipboard.writeText('http://localhost:3000/share-playlist/' + shareLink) 
+            toast.success(`Share Link Copied To Your Clipboard`)}} value={'share-playlist/' + shareLink} readOnly  />
+            <button className='mt-3 btn ' onClick={() => handleShareLink()}>Share Playlist</button>
+          </div>
+        </div>
+      <div className='mt-8'>
         <div className='flex flex-wrap gap-8 justify-center'>
           {playlistData?.songsData.map((song, i) => (
             <PlaylistSongCard

@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import axios from 'axios'
 import authService from '../services/auth.service'
+import toast, { Toaster } from 'react-hot-toast';
 
 function SignUpForm() {
     const [username, setUsername] = useState("")
@@ -59,6 +60,8 @@ function SignUpForm() {
                 password: event.target.password.value,
             }
             authService.handleRegister(newUser)
+            toast.success(`Successfully Created ${newUser.username} Account`)
+            event.target.reset();
         } else {
             alert("Failed to sign up, you have errors in your form");
             event.target.reset();

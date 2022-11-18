@@ -38,7 +38,7 @@ if(error) return <Error/>
     {isUserLogin === true? 
     <div className='mt-4'>
       <div className='flex items-center'>
-      <h1 className='text-[4rem] font-semibold '>My Playlists</h1>
+      <h1 className='text-[3rem] font-bold text-white '>My Playlists</h1>
       <div className='form-control ml-5'>
           <form onSubmit={handleNewPlaylist} className='input-group'>
             <input className='input input-bordered w-[10rem]' placeholder='Playlist Name' name='playlistName' />
@@ -50,6 +50,7 @@ if(error) return <Error/>
     <div className='flex flex-wrap justify-center gap-8 '>
     {playlistsData?.savedPlaylists.map((playlistCard)=>(
       <PlaylistCard
+      key={playlistCard._id}
       playlistId={playlistCard._id}
       playlistName={playlistCard.playlistName}
       description={playlistCard.description}

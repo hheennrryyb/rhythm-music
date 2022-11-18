@@ -17,10 +17,10 @@ function Song() {
             <h1 className='text-[5rem]'>{songData?.title}</h1>
             <h2>{songData?.subtitle}</h2>
             
-            <h3>Lyrics:</h3>
+            {/* <h3>Lyrics:</h3>
             {songData?.sections[1].text.map((line)=>(
                 <p>{line}</p>
-            ))}
+            ))} */}
         </div>
 
     </div>

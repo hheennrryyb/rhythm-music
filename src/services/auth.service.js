@@ -4,6 +4,7 @@ import { setUserData } from '../redux/features/userSlice'
 import axios from 'axios'
 
 
+
 const handleAuth = async (token) => {
     const body = {}
     const res = await axios.post(`http://localhost:8080/users/profile`, body, {
@@ -31,17 +32,9 @@ const handleSignIn = (userSignIn) => {
         })
 }
 
-const handleRegister = (newUser) => {
-    axios.post(`http://localhost:8080/users/auth/register`, newUser)
-        .then((response) => {
-            // const newRegisteredUser = response.data
-            // console.log(newRegisteredUser)
-            // return newRegisteredUser
-            console.log(newUser)
-            console.log(response.data)
-        }).catch((error) => {
-            console.error(error)
-        })
+const handleRegister = async (newUser) => {
+    const res = await axios.post(`http://localhost:8080/users/auth/register`, newUser)
+    return newUser
 }
 
 const handleLogout = () => {
@@ -62,21 +55,14 @@ const getCurrentUser = () => {
 
 const handleGuestUser = async () => {
     const random = Math.floor(Math.random() * 1000)
-    // const guestUser = {
-    //     username: `Guest${random}`,
-    //     email: 'Guest@gmail.com',
-    //     password:`guestpass${random.toString()}`,
-    // }
     const newUser = {
-        username: 'testingguest22',
-        email: 'Guest@gmail.com',
-        password:'testpass',
+        username: `Guest${random}`,
+        email: `Guest${random}@gmail.com`,
+        password:`guestpass${random.toString()}`,
     }
-    console.log(newUser)
-    // const guest = await 
-    handleRegister(newUser)
-    sessionStorage.setItem('guestUser', true)
-    // handleSignIn(guest)
+    const response = await handleRegister(newUser)
+    handleSignIn(response)
+
 }
 
 

@@ -2,10 +2,21 @@ import React from 'react'
 import { useState } from 'react'
 import {SignUpForm, SignInForm} from '../components'
 import authService from '../services/auth.service'
+import {setIsUserLogin, setUserData} from '../redux/features/userSlice'
+import {useNavigate} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 function Login() {
     const [toggleForm, SetToggleForm] = useState(false)
-    
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const handleGustLogin = () =>{
+        authService.handleGuestUser()
+        dispatch(setIsUserLogin(true))
+        navigate('/')
+    }
+
     return (
         <>
         <div className='w-[100vw] p-5'>
@@ -22,7 +33,7 @@ function Login() {
         <button className='btn' onClick={()=> SetToggleForm(true)} >Haven't Made An Account Yet?</button>
         </div>
         }
-        <button className='btn btn-outline mt-10 ' onClick={() => authService.handleGuestUser()}> Guest Account Login </button>
+        <button className='btn btn-outline mt-10 ' onClick={() => handleGustLogin()}> Guest Account Login </button>
         </div>
         </div>
         </>
