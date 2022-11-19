@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-
+import './App.css'
 import { SideBar, MusicPlayer} from './components';
 import { Discover, Playlists, SinglePlaylist, Charts, Login, SharePlaylist } from './pages';
 
@@ -21,14 +21,13 @@ const App = () => {
     }
   }, [isUserLogin]);
 
-
   return (
     <>
         <div className='hidden sm:block'>
         <img src={logo} className='absolute z-50 w-[12rem] left-[70vw] lg:left-[80vw] mt-4 '/>
         </div>
 
-        <div className="h-[100vh] overflow-y-scroll hide-scrollbar ">
+        <div className="viewport hide-scrollbar ">
         
             <Routes>
               <Route path="/" element={<Discover />} />
