@@ -38,9 +38,10 @@ const App = () => {
               <Route path="/share-playlist" element={<SharePlaylist />} />
               <Route path="/share-playlist/:shareId" element={<SharePlaylist />} />
             </Routes>
+ 
+            <MusicPlayer />
+            <SideBar />
 
-          <MusicPlayer />
-          <SideBar />
       </div>
     </>
   );

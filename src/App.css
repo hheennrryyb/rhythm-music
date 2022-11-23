@@ -1,5 +1,6 @@
 .viewport {
     overflow-y: scroll;
-    height: 100vh;
+    height: 100vh;  
+    max-height: -webkit-fill-available;
     /* min-height: 100vh; */
   }
