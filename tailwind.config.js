@@ -3,6 +3,7 @@ module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}', "./src/**/*.{html,js}"],
   plugins: [
     require("daisyui"),
+    require('tailwind-scrollbar-hide'),
   ],
   daisyui: {
     // styled: true,

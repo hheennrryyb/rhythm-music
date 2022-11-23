@@ -19,7 +19,7 @@ function GenreList({ genreListId }) {
             <div className='w-full mt-5 mb-5 md:px-28 px-5 '>
                 <h2 className='font-bold text-3xl text-white text-left'>{genres.find(({ value }) => value === genreListId)?.title}</h2>
             </div>
-            <div className='flex flex-row overflow-y-scroll gap-x-4 scroll-smooth'>
+            <div className='flex flex-row scrollbar-hide overflow-y-scroll gap-x-4 scroll-smooth'>
                 {sortedData?.map((song, i) => (
                     <div key={i} className='w-[250px]'>
                         <SongCard

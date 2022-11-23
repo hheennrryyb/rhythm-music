@@ -36,7 +36,7 @@ const App = () => {
         </a>
         </div>
 
-        <div className="viewport hide-scrollbar ">
+        <div className="viewport scrollbar-hide ">
         
             <Routes>
               <Route path="/" element={<Discover />} />
