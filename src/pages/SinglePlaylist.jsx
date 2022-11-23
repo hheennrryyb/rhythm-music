@@ -71,8 +71,8 @@ function SinglePlaylist() {
 
   return (
     <div className='flex flex-col w-[100vw] lg:px-28 sm:px-5 pb-[12rem]'>
-        <div className="flex flex-wrap items-end bg-gradient-to-br from-white/10 to-[#51D5FF]/10 backdrop-blur-lg rounded-b-3xl p-5">
-          <div className='flex flex-col flex-1 mr-5'>
+        <div className="flex flex-wrap items-end bg-gradient-to-br from-white/10 to-[#51D5FF]/10 backdrop-blur-lg rounded-b-3xl p-5 ">
+          <div className='flex flex-col flex-1 mr-5 mt-[4rem] sm:mt-[0rem] w-full'>
             <input className={`w-full text-white text-5xl font-bold p-2 bg-transparent ${editable === false? "bg-gray-800/50 rounded-lg": "bg-transparent" }`} value={playlistName} onChange={(e)=>setPlaylistName(e.target.value)} readOnly={editable}/>
             <textarea className={`w-full text-white bg-transparent resize-none p-2 mt-3 ${editable === false? "bg-gray-800/50 rounded-lg": "bg-transparent" }`} value={description} onChange={(e)=>setDescription(e.target.value)} readOnly={editable}/>
             <button className='mt-3 btn w-[10rem]' onClick={toggleEdit}>{editable === false? "Save": "Edit" }</button>
