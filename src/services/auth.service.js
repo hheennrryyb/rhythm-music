@@ -65,8 +65,10 @@ const handleGuestUser = async () => {
         password:`guestpass${random.toString()}`,
     }
     const registerRes = await handleGuestRegister(newUser)
-    const signInRes = await handleSignIn(registerRes)
-    return true
+    console.log('register'+registerRes)
+    const res = await handleSignIn(registerRes)
+    console.log(res)
+    return 
 }
 
 const authService = {

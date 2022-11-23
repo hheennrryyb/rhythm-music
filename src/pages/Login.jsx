@@ -13,17 +13,19 @@ function Login() {
     const dispatch = useDispatch()
 
     const handleGustLogin = async () =>{
-        const res = await authService.handleGuestUser()
-        if(res){
-            toast.success(`Welcome Guest User!`)
-                navigate('/')
+            await authService.handleGuestUser()
+            toast.success(`Loading Guest User...`)
+            setTimeout(()=>{
+                toast.success(`Welcome Guest User!`)
                 dispatch(setIsUserLogin(true))
-        }
+                navigate('/')
+            },1000)
+
     }
 
     return (
         <>
-        <div className='w-[100vw] p-5'>
+        <div className='w-[100vw] p-5 mb-[15rem]'>
         <div className='flex flex-col items-center justify-center'>
         {toggleForm === true &&
         <div className='card bg-white/10 bg-opacity-10 backdrop-blur-sm animate-slideup w-full sm:w-[30rem] sm:mt-[4rem]'>

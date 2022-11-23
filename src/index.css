@@ -12,7 +12,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background: linear-gradient(-45deg, #002029, #00303d, #004052, #005066, #00607a);
+  background: linear-gradient(-45deg, #f72585, #b5179e, #7209b7, #560bad, #480ca8, #3a0ca3, #3f37c9, #4361ee, #4895ef, #4cc9f0);
+  /* background: linear-gradient(-45deg, #002029, #00303d, #004052, #005066, #00607a); */
 	background-size: 400% 400%;
 	animation: gradient 15s ease infinite;
 }
