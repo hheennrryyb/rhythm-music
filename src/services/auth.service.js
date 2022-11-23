@@ -64,8 +64,9 @@ const handleGuestUser = async () => {
         email: `Guest${random}@gmail.com`,
         password:`guestpass${random.toString()}`,
     }
-    const response = await handleGuestRegister(newUser)
-    handleSignIn(response)
+    const registerRes = await handleGuestRegister(newUser)
+    const signInRes = await handleSignIn(registerRes)
+    return true
 }
 
 const authService = {

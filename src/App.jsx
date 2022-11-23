@@ -9,6 +9,7 @@ import authService from './services/auth.service';
 import {useDispatch} from 'react-redux'
 import {setUserData ,setIsUserLogin} from './redux/features/userSlice'
 import logo from './assets/Logo2.svg'
+
 const App = () => {
   const { isUserLogin } = useSelector((state) => state.user);
   const dispatch = useDispatch()
@@ -24,7 +25,9 @@ const App = () => {
   return (
     <>
         <div className='hidden sm:block'>
+        <a target="_blank" href="https://github.com/hheennrryyb">
         <img src={logo} className='absolute z-50 w-[12rem] left-[70vw] lg:left-[80vw] mt-4 '/>
+        </a>
         </div>
 
         <div className="viewport hide-scrollbar ">

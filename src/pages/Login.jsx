@@ -5,6 +5,7 @@ import authService from '../services/auth.service'
 import {setIsUserLogin, setUserData} from '../redux/features/userSlice'
 import {useNavigate} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import toast from 'react-hot-toast';
 
 function Login() {
     const [toggleForm, SetToggleForm] = useState(false)
@@ -13,10 +14,11 @@ function Login() {
 
     const handleGustLogin = async () =>{
         const res = await authService.handleGuestUser()
-        setTimeout(()=>{
-            dispatch(setIsUserLogin(true))
-            navigate('/')
-        },500)
+        if(res){
+            toast.success(`Welcome Guest User!`)
+                navigate('/')
+                dispatch(setIsUserLogin(true))
+        }
     }
 
     return (

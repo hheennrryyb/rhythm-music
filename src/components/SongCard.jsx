@@ -55,8 +55,8 @@ const SongCard = ({ song, isPlaying, activeSong, i, data }) => {
         </div>
         {isUserLogin === true ?
           <div className="dropdown dropdown-top dropdown-end">
-            <button tabIndex={0} className="bg-white/10 rounded-lg p-1"><HiOutlinePlus size={25} /></button>
-            <ul tabIndex={0} className="overflow-y-scroll dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[13.6rem] h-[15rem] flex flex-row">
+            <label tabIndex={0} className="btn border-none z-[99] bg-white/10 rounded-lg p-1"><HiOutlinePlus size={25} /></label>
+            <ul tabIndex={0} className="overflow-y-scroll dropdown-content menu p-2 shadow bg-base-100 rounded-box w-[13.6rem] h-[15rem] block">
               {playlistsData?.savedPlaylists.length !== 0?playlistsData?.savedPlaylists?.map((playlist, i) => (
                 <li key={i} className='w-full h-fit bg-white/5 rounded-md mb-2' onClick={() => handleSaveEvent(playlist)}><a>{playlist.playlistName}</a></li>
               )): <p className='text-md p-3'>Make A New Playlist To Start Adding Songs 🎶</p>}
