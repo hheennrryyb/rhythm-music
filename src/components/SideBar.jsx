@@ -18,7 +18,7 @@ const NavLinks = ({ handleClick }) => (
         <p className='hidden lg:block'>{item.name}</p>
       </NavLink>
     ))}
-</>
+  </>
 )
 
 const SideBar = () => {
@@ -30,34 +30,42 @@ const SideBar = () => {
   return (
     <>
       <div className='absolute h-[4rem] bottom-0 left-0 right-0 flex justify-center bg-black/95 backdrop-blur-lg z-10'>
- 
+
         <div className='flex flex-wrap items-center justify-between md:justify-center md:gap-[10%] w-full px-5 sm:px-[6rem] '>
-        <div className="dropdown dropdown-top my-auto ">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className=" sm:w-16 rounded-full bg-white/30 p-0">
-            {isUserLogin == true?
-              <img src={`https://joeschmoe.io/api/v1/random:${userData?._id}`} />
-              : <TbUsers size={25} className='p-1 w-full h-full'/>}
-            </div>
-          </label>
-          <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
-            {isUserLogin === false ?
-              <li><Link to='/login'><p className='sm:text-base sm:my-1 text-xl my-4 '>Login</p></Link></li> :
-              <>
-                <li>
-                  <p className="sm:text-base sm:my-1 text-xl my-4 ">
-                    Welcome, {userData?.username}!
+          <div className="dropdown dropdown-top my-auto ">
+            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+              <div className=" sm:w-16 rounded-full bg-white/30 p-0">
+                {isUserLogin == true ?
+                  <img src={`https://joeschmoe.io/api/v1/random:${userData?._id}`} />
+                  : <TbUsers size={25} className='p-1 w-full h-full' />}
+              </div>
+            </label>
+            <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+
+              {isUserLogin === false ?
+                <li><Link to='/login'><p className='sm:text-base sm:my-1 text-xl my-4 '>Login</p></Link></li> :
+                <>
+                  <li>
+                    <p className="sm:text-base sm:my-1 text-xl my-4 ">
+                      Welcome, {userData?.username}!
+                    </p>
+                  </li>
+                  <li onClick={() => {
+                    authService.handleLogout()
+                    dispatch(setIsUserLogin(false))
+                  }}><Link to='/'><p className="sm:text-base sm:my-1 text-xl my-4 ">Logout</p></Link></li>
+                </>
+              }
+              <li>
+                <a target="_blank" href="https://github.com/hheennrryyb">
+                  <p className="text-sm font-light ">
+                    App By Henry Bellman
                   </p>
-                </li>
-                <li  onClick={() => {
-                  authService.handleLogout()
-                  dispatch(setIsUserLogin(false))
-                }}><Link to='/'><p className="sm:text-base sm:my-1 text-xl my-4 ">Logout</p></Link></li>
-              </>
-            }
-          </ul>
-        </div>
-        <NavLinks />
+                </a>
+              </li>
+            </ul>
+          </div>
+          <NavLinks />
         </div>
       </div>
     </>
