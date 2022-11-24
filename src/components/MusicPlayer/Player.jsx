@@ -3,9 +3,10 @@ import React, { useRef, useEffect } from 'react';
 
 const Player = ({ activeSong, isPlaying, seekTime, onEnded, onTimeUpdate, onLoadedData, repeat }) => {
   const ref = useRef(null);
+  
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
-    if (isPlaying) {
+    if (ref.current.play() !== undefined && isPlaying ) {
       ref.current.play();
     } else {
       ref.current.pause();

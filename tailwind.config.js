@@ -6,6 +6,7 @@ module.exports = {
     require('tailwind-scrollbar-hide'),
   ],
   daisyui: {
+    themes: ["synthwave"],
     // styled: true,
     // themes: true,
     // base: true,
@@ -13,7 +14,7 @@ module.exports = {
     // logs: true,
     // rtl: false,
     // prefix: "",
-    darkTheme: "dark",
+    // darkTheme: "dark",
   },
   theme: {
     extend: {

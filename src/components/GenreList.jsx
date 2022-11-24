@@ -11,7 +11,7 @@ function GenreList({ genreListId }) {
     const { activeSong, isPlaying } = useSelector((state) => state.player)
     const { data, isFetching, error } = useGetSongByGenreQuery(genreListId);
 
-    const sortedData = data?.slice(0, 10)
+    const sortedData = data?.slice(0, 15)
 
     return (
 
