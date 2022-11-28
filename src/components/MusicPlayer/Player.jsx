@@ -5,7 +5,6 @@ const Player = ({ activeSong, isPlaying, seekTime, onEnded, onTimeUpdate, onLoad
   const ref = useRef(null);
   // eslint-disable-next-line no-unused-expressions
   if (ref.current) {
-    console.log(ref.current)
     if (isPlaying) {
       ref.current.play();
     } else {
