@@ -13,7 +13,7 @@ const NavLinks = ({ handleClick }) => (
         onClick={() => handleClick && handleClick()}
         key={item.name}
         to={item.to}
-        className='flex flex-col justify-start items-center mx-8 text-sm font-medium text-gray-400 hover:text-cyan-400'>
+        className='flex flex-col justify-start items-center mx-8 text-sm font-medium text-gray-400 hover:text-[#4895ef] '>
         <item.icon className='h-7 w-7 lg:w-6 lg:h-6 ' />
         <p className='hidden lg:block'>{item.name}</p>
       </NavLink>
@@ -36,7 +36,7 @@ const SideBar = () => {
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className=" sm:w-16 rounded-full bg-white/30 p-0">
                 {isUserLogin == true ?
-                  <img src={`https://joeschmoe.io/api/v1/random:${userData?._id}`} />
+                  <img src={`https://avatars.dicebear.com/api/adventurer-neutral/:${userData?._id}.svg`} />
                   : <TbUsers size={25} className='p-1 w-full h-full' />}
               </div>
             </label>

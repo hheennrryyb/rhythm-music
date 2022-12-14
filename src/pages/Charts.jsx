@@ -37,7 +37,7 @@ function Charts() {
             <div className='w-full mt-5 mb-5 md:px-28 px-5 '>
                 <h2 className='font-bold text-3xl text-white text-left'>Trending Artists</h2>
             </div>
-
+            
             <div className='flex flex-wrap justify-center gap-8'>
                 <Swiper
                     slidesPerView="auto"
