@@ -36,7 +36,7 @@ const SideBar = () => {
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className=" sm:w-16 rounded-full bg-white/30 p-0">
                 {isUserLogin == true ?
-                  <img src={`https://avatars.dicebear.com/api/adventurer-neutral/:${userData?._id}.svg`} />
+                  <img src={`https://api.dicebear.com/9.x/fun-emoji/svg?seed=${userData?._id}`} />
                   : <TbUsers size={25} className='p-1 w-full h-full' />}
               </div>
             </label>
