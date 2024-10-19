@@ -68,9 +68,12 @@ const Discover = () => {
 
     return (
         <div className="flex flex-col pb-[12rem]">
-            <GenreList genreListId={'ELECTRONIC'}/>
             <GenreList genreListId={'POP'}/>
+            <GenreList genreListId={'ROCK'}/>
             <GenreList genreListId={'HIP_HOP_RAP'}/>
+            <GenreList genreListId={'DANCE'}/>
+            <GenreList genreListId={'SOUL_RNB'}/>
+            <GenreList genreListId={'ALTERNATIVE'}/>
             <DiscoverGenreList />
 
         </div>
